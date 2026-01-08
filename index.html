@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Finance - Loan & Mortgage Calculator</title>
+    <title>Smart Finance - Loan Calculator</title>
     <style>
         :root {
             --bg-dark: #0f172a;
@@ -14,34 +14,39 @@
             --border-glow: rgba(255, 255, 255, 0.2);
         }
 
-        body { font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); -webkit-font-smoothing: antialiased; color: var(--text-light); }
+        body { font-family: -apple-system, system-ui, sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--text-light); -webkit-font-smoothing: antialiased; }
         
-        .top-header { background-color: #166534; padding: 12px 15px; display: flex; align-items: center; justify-content: space-between; color: white; border-bottom: 1px solid var(--border-color); }
-        .top-header h1 { margin: 0; font-size: 20px; font-weight: 900; letter-spacing: 0.5px; }
-        
+        .top-header { background-color: #166534; padding: 12px 15px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-color); }
+        .top-header h1 { margin: 0; font-size: 20px; font-weight: 900; color: white; }
         .lang-switcher { background: var(--bg-dark); border: 2px solid white; color: white; padding: 4px 8px; border-radius: 8px; font-size: 15px; cursor: pointer; font-weight: 800; }
         
-        .container { max-width: 800px; margin: 0 auto; padding: 5px; background: var(--bg-dark); min-height: 100vh; box-sizing: border-box; }
+        .container { max-width: 800px; margin: 0 auto; padding: 5px; box-sizing: border-box; }
         
         .tabs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background-color: #14532d; border: 1px solid #14532d; margin: 15px 0 10px; border-radius: 8px; overflow: hidden; }
-        .tab { background: #166534; color: #fff; height: 40px; text-align: center; cursor: pointer; font-size: 11px; font-weight: 900; text-transform: uppercase; border: none; display: flex; align-items: center; justify-content: center; }
+        .tab { background: #166534; color: #fff; height: 44px; text-align: center; cursor: pointer; font-size: 11px; font-weight: 900; text-transform: uppercase; display: flex; align-items: center; justify-content: center; }
         .tab.active { background: #fff; color: #166534; }
         
-        .converter-box { border: 1px solid var(--border-color); padding: 30px 20px; background: var(--card-bg); border-radius: 12px; margin-bottom: 5px; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
-        
-        .row { display: flex; align-items: center; margin-bottom: 18px; }
-        .row label { width: 150px; font-size: 16px; color: #cbd5e1; font-weight: 700; line-height: 1.2; padding-right: 10px; }
-        
-        .input-field { flex: 1; padding: 10px 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 19px; font-weight: 800; width: 100%; box-sizing: border-box; height: 48px; background: #fff; color: #000; outline: none; }
-        .result-field { background: #f0fdf4 !important; color: #166534 !important; border-color: #22c55e !important; }
-
         .ad-space { background: rgba(255, 255, 255, 0.05); border: 1px dashed var(--border-color); margin: 10px 0; text-align: center; padding: 15px; color: #64748b; font-size: 11px; min-height: 90px; display: flex; align-items: center; justify-content: center; border-radius: 8px; }
-
+        
+        .converter-box { border: 1px solid var(--border-color); padding: 30px 20px; background: var(--card-bg); border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
+        .row { display: flex; align-items: center; margin-bottom: 18px; }
+        .row label { width: 140px; font-size: 16px; color: #cbd5e1; font-weight: 700; }
+        .input-field { flex: 1; padding: 10px 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 19px; font-weight: 800; background: #fff; color: #000; outline: none; width: 100%; }
+        .res-field { background: #f0fdf4 !important; color: #166534 !important; border-color: #22c55e !important; }
+        
+        /* Виправлена сітка з центрованою 7-ю кнопкою */
         .tools-network { padding: 20px 15px; text-align: center; border-top: 1px solid var(--border-color); margin-top: 20px; }
-        .tools-network h4 { margin: 0 0 12px 0; color: #64748b; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
-        .tool-link-btn { display: inline-block; padding: 8px 16px; margin: 5px; border: 1px solid var(--accent-green); color: var(--accent-green); text-decoration: none; border-radius: 8px; font-size: 12px; font-weight: 900; transition: 0.2s; }
+        .tools-network h4 { margin: 0 0 15px 0; color: #64748b; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
+        .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .tool-link-btn { padding: 12px 5px; border: 1px solid var(--accent-green); color: var(--accent-green); text-decoration: none; border-radius: 8px; font-size: 12px; font-weight: 900; transition: 0.2s; display: flex; align-items: center; justify-content: center; }
         .tool-link-btn:hover { background: var(--accent-green); color: white; }
         
+        .tool-link-btn:last-child:nth-child(odd) {
+            grid-column: 1 / span 2;
+            justify-self: center;
+            width: calc(50% - 5px);
+        }
+
         footer { border-top: 1px solid var(--border-color); padding: 25px 15px; text-align: center; font-size: 13px; color: #94a3b8; }
         .footer-info-block { border: 2px solid var(--border-glow); border-radius: 12px; padding: 18px; margin-bottom: 15px; background: rgba(255, 255, 255, 0.05); }
         .footer-link { color: var(--accent-green); text-decoration: underline; cursor: pointer; padding: 0 8px; font-weight: 900; }
@@ -64,83 +69,75 @@
 </div>
 
 <div class="container">
-    <div id="tabs" class="tabs-grid">
+    <div class="tabs-grid">
         <div class="tab active" id="tab-loan" onclick="switchMode('loan')">Loan</div>
         <div class="tab" id="tab-mortgage" onclick="switchMode('mortgage')">Mortgage</div>
     </div>
-
     <div class="ad-space">ADVERTISEMENT AREA</div>
-
+    
     <div class="converter-box">
         <div class="row"><label id="lbl-amount">Amount:</label><input type="number" id="amount" class="input-field" value="10000" oninput="calculate()"></div>
-        <div class="row"><label id="lbl-interest">Interest (%):</label><input type="number" id="interest" class="input-field" value="5" step="0.1" oninput="calculate()"></div>
-        <div class="row"><label id="lbl-term">Term (Years):</label><input type="number" id="term" class="input-field" value="5" oninput="calculate()"></div>
-        <div class="row" style="margin-top:25px; border-top: 1px solid var(--border-color); padding-top: 20px;">
-            <label id="lbl-monthly">Monthly Pay:</label>
-            <input type="text" id="monthlyResult" class="input-field result-field" readonly>
+        <div class="row"><label id="lbl-interest">Interest %:</label><input type="number" id="interest" class="input-field" value="5" step="0.1" oninput="calculate()"></div>
+        <div class="row"><label id="lbl-term">Term (Y):</label><input type="number" id="term" class="input-field" value="5" oninput="calculate()"></div>
+        
+        <div style="margin-top:25px; border-top: 1px solid var(--border-color); padding-top: 20px;">
+            <div class="row"><label id="lbl-monthly">Monthly Pay:</label><input type="text" id="monthlyResult" class="input-field res-field" readonly></div>
+            <div class="row"><label id="lbl-total">Total Repay:</label><input type="text" id="totalResult" class="input-field res-field" readonly></div>
         </div>
-        <div class="row"><label id="lbl-total">Total Repay:</label><input type="text" id="totalResult" class="input-field result-field" readonly></div>
     </div>
 
     <div class="tools-network">
         <h4 id="txt-other-tools">Other Elite Tools</h4>
-        <a href="https://smart-converter.github.io/unit-converter/" class="tool-link-btn">Unit Converter</a>
-        <a href="https://smart-converter.github.io/currency-converter/" class="tool-link-btn">Currency Converter</a>
-        <a href="https://smart-converter.github.io/percentage-calculator/" class="tool-link-btn">Percentage Calculator</a>
-        <a href="https://smart-converter.github.io/vat-calculator/" class="tool-link-btn">VAT Calculator</a>
-        <a href="https://smart-converter.github.io/discount-calculator/" class="tool-link-btn">Discount Calculator</a>
-        <a href="https://smart-converter.github.io/tip-calculator/" class="tool-link-btn">Tip Calculator</a>
-        <a href="https://smart-converter.github.io/bmi-calculator/" class="tool-link-btn">BMI Calculator</a>
+        <div class="tools-grid">
+            <a href="https://smart-converter.github.io/unit-converter/" class="tool-link-btn">Unit Converter</a>
+            <a href="https://smart-converter.github.io/currency-converter/" class="tool-link-btn">Currency Converter</a>
+            <a href="https://smart-converter.github.io/percentage-calculator/" class="tool-link-btn">Percentage Calc</a>
+            <a href="https://smart-converter.github.io/discount-calculator/" class="tool-link-btn">Discount Calc</a>
+            <a href="https://smart-converter.github.io/vat-calculator/" class="tool-link-btn">VAT Calculator</a>
+            <a href="https://smart-converter.github.io/tip-calculator/" class="tool-link-btn">Tip Calculator</a>
+            <a href="https://smart-converter.github.io/bmi-calculator/" class="tool-link-btn">BMI Calculator</a>
+        </div>
     </div>
-
-    <div class="ad-space">ADVERTISEMENT AREA (Bottom)</div>
 </div>
 
 <footer>
     <div class="footer-info-block" id="footer-full-text"></div>
-    <p>© 2026 SmartFinance.io - Precision Budgeting</p>
-    <div style="margin-top:10px;">
+    <p>© 2026 SmartFinance.io</p>
+    <div>
         <span class="footer-link" onclick="openPol('privacy')" id="link-privacy">Privacy Policy</span>
         <span class="footer-link" onclick="openPol('terms')" id="link-terms">Terms of Use</span>
     </div>
 </footer>
 
 <div id="siteModal" class="modal" onclick="if(event.target == this) closeModal()">
-    <div class="modal-content">
-        <span class="close-btn" onclick="closeModal()">×</span>
-        <div id="modalBody"></div>
-    </div>
+    <div class="modal-content"><span class="close-btn" onclick="closeModal()">×</span><div id="modalBody"></div></div>
 </div>
 
 <script>
     const translations = {
         en: {
-            loan: "Loan", mort: "Mortgage", amount: "Amount:", interest: "Interest (%):", term: "Term (Years):", monthly: "Monthly Pay:", total: "Total Repay:",
-            privacy: "Privacy Policy", terms: "Terms of Use", other: "Other Elite Tools",
-            footer: "SmartFinance.io provides professional financial calculators for loans and mortgages with daily rate logic.",
-            privText: "<h2>Privacy</h2><p>Your financial data never leaves your browser.</p>",
-            termsText: "<h2>Terms</h2><p>Calculations are estimates for informational use only.</p>"
+            loan: "Loan", mort: "Mortgage", amount: "Amount:", interest: "Interest %:", term: "Term (Y):", monthly: "Monthly Pay:", total: "Total Repay:",
+            other: "Other Elite Tools", privacy: "Privacy Policy", terms: "Terms of Use",
+            footer: "SmartFinance.io provides professional financial calculators.",
+            privText: "<h2>Privacy</h2><p>Data stays on your device.</p>", termsText: "<h2>Terms</h2><p>For info only.</p>"
         },
         uk: {
-            loan: "Кредит", mort: "Іпотека", amount: "Сума:", interest: "Ставка (%):", term: "Термін (р.):", monthly: "Міс. платіж:", total: "До сплати:",
-            privacy: "Конфіденційність", terms: "Умови", other: "Інші професійні інструменти",
-            footer: "SmartFinance.io надає професійні фінансові калькулятори для кредитів та іпотеки з точною логікою нарахувань.",
-            privText: "<h2>Конфіденційність</h2><p>Ми не збираємо ваші фінансові дані.</p>",
-            termsText: "<h2>Умови</h2><p>Розрахунки мають інформаційний характер.</p>"
+            loan: "Кредит", mort: "Іпотека", amount: "Сума:", interest: "Ставка %:", term: "Термін (р.):", monthly: "Міс. платіж:", total: "До сплати:",
+            other: "Інші інструменти", privacy: "Конфіденційність", terms: "Умови",
+            footer: "SmartFinance.io надає професійні фінансові калькулятори.",
+            privText: "<h2>Конфіденційність</h2><p>Дані не збираються.</p>", termsText: "<h2>Умови</h2><p>Тільки для ознайомлення.</p>"
         },
         es: {
-            loan: "Préstamo", mort: "Hipoteca", amount: "Monto:", interest: "Interés (%):", term: "Plazo (Años):", monthly: "Pago Mensual:", total: "Total:",
-            privacy: "Privacidad", terms: "Términos", other: "Otras herramientas",
-            footer: "SmartFinance.io ofrece calculadoras financieras profesionales para préstamos e hipotecas.",
-            privText: "<h2>Privacidad</h2><p>Sus datos financieros no se guardan.</p>",
-            termsText: "<h2>Términos</h2><p>Los cálculos son solo estimaciones informativas.</p>"
+            loan: "Préstamo", mort: "Hipoteca", amount: "Monto:", interest: "Interés %:", term: "Años:", monthly: "Pago Mensual:", total: "Total:",
+            other: "Otras herramientas", privacy: "Privacidad", terms: "Términos",
+            footer: "SmartFinance.io ofrece calculadoras financieras profesionales.",
+            privText: "<h2>Privacidad</h2><p>Los datos permanecen en su dispositivo.</p>", termsText: "<h2>Términos</h2><p>Solo para fines informativos.</p>"
         },
         de: {
-            loan: "Kredit", mort: "Hypothek", amount: "Betrag:", interest: "Zins (%):", term: "Laufzeit (J.):", monthly: "Monatsrate:", total: "Gesamt:",
-            privacy: "Datenschutz", terms: "AGB", other: "Andere Tools",
-            footer: "SmartFinance.io bietet professionelle Finanzrechner für Kredite und Hypotheken.",
-            privText: "<h2>Datenschutz</h2><p>Ihre Finanzdaten bleiben in Ihrem Browser.</p>",
-            termsText: "<h2>AGB</h2><p>Berechnungen dienen nur zu Informationszwecken.</p>"
+            loan: "Kredit", mort: "Hypothek", amount: "Betrag:", interest: "Zins %:", term: "Jahre:", monthly: "Monatsrate:", total: "Gesamt:",
+            other: "Andere Tools", privacy: "Datenschutz", terms: "AGB",
+            footer: "SmartFinance.io bietet professionelle Finanzrechner.",
+            privText: "<h2>Datenschutz</h2><p>Daten verbleiben auf Ihrem Gerät.</p>", termsText: "<h2>AGB</h2><p>Nur zur Information.</p>"
         }
     };
 
@@ -153,7 +150,7 @@
     }
 
     function updateUI() {
-        const t = translations[curLang];
+        const t = translations[curLang] || translations.en;
         document.getElementById('langSelect').value = curLang;
         document.getElementById('tab-loan').innerText = t.loan;
         document.getElementById('tab-mortgage').innerText = t.mort;
@@ -173,31 +170,27 @@
         const p = parseFloat(document.getElementById('amount').value) || 0;
         const r = (parseFloat(document.getElementById('interest').value) || 0) / 100 / 12;
         const n = (parseFloat(document.getElementById('term').value) || 0) * 12;
-        
         if (p > 0 && r > 0 && n > 0) {
             const x = Math.pow(1 + r, n);
             const monthly = (p * x * r) / (x - 1);
             document.getElementById('monthlyResult').value = monthly.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
             document.getElementById('totalResult').value = (monthly * n).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
-        } else {
-            document.getElementById('monthlyResult').value = "0.00";
-            document.getElementById('totalResult').value = "0.00";
         }
     }
 
     function switchMode(mode) {
         document.getElementById('tab-loan').classList.toggle('active', mode === 'loan');
         document.getElementById('tab-mortgage').classList.toggle('active', mode === 'mortgage');
-        calculate();
     }
 
     function openPol(type) {
-        const t = translations[curLang];
+        const t = translations[curLang] || translations.en;
         document.getElementById('modalBody').innerHTML = type === 'privacy' ? t.privText : t.termsText;
         document.getElementById('siteModal').style.display = 'block';
     }
 
     function closeModal() { document.getElementById('siteModal').style.display = 'none'; }
+    
     updateUI();
 </script>
 </body>
