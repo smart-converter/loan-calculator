@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Finance - Loan & Mortgage Calculator</title>
-    <meta name="description" content="Calculate your monthly loan or mortgage payments with high precision. Professional financial analysis for better decisions.">
+    <title>Smart Finance - Professional Loan & Mortgage Calculator</title>
     <style>
         :root {
             --bg-dark: #0f172a;
@@ -29,16 +28,12 @@
         
         .top-header { background-color: #166534; padding: 12px 15px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-color); }
         .top-header h1 { margin: 0; font-size: 20px; font-weight: 900; color: white; }
-        .lang-switcher { background: var(--bg-dark); border: 2px solid white; color: white; padding: 4px 8px; border-radius: 8px; font-size: 15px; cursor: pointer; font-weight: 800; }
+        .lang-switcher { background: var(--bg-dark); border: 2px solid white; color: white; padding: 4px 8px; border-radius: 8px; font-size: 15px; cursor: pointer; font-weight: 800; outline: none; }
         
         .container { max-width: 800px; margin: 0 auto; padding: 10px; width: 100%; }
         
         .tabs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background-color: #14532d; border: 1px solid #14532d; margin: 15px 0 10px; border-radius: 8px; overflow: hidden; }
-        .tab { 
-            background: #166534; color: #fff; height: 48px; text-align: center; cursor: pointer; 
-            font-size: 11px; font-weight: 900; text-transform: uppercase; border: none; 
-            display: flex; align-items: center; justify-content: center; width: 100%;
-        }
+        .tab { background: #166534; color: #fff; height: 48px; text-align: center; cursor: pointer; font-size: 11px; font-weight: 900; text-transform: uppercase; border: none; display: flex; align-items: center; justify-content: center; }
         .tab.active { background: #fff; color: #166534; }
         
         .ad-space { background: rgba(255, 255, 255, 0.05); border: 1px dashed var(--border-color); margin: 10px 0; text-align: center; padding: 15px; color: var(--text-muted); font-size: 11px; height: 90px; display: flex; align-items: center; justify-content: center; border-radius: 8px; }
@@ -51,7 +46,6 @@
         
         .seo-content { padding: 25px 5px; line-height: 1.7; font-size: 15px; color: var(--text-muted); }
         .seo-content h2 { color: var(--accent-green); font-size: 22px; margin: 25px 0 12px; font-weight: 900; }
-        .seo-content p { margin-bottom: 15px; }
 
         .tools-network { padding: 20px 0; text-align: center; border-top: 1px solid var(--border-color); margin-top: 20px; }
         .tools-network h2 { margin: 0 0 15px 0; color: #64748b; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
@@ -60,19 +54,7 @@
         .tool-link-btn:last-child:nth-child(odd) { grid-column: 1 / span 2; justify-self: center; width: calc(50% - 5px); }
 
         footer { border-top: 1px solid var(--border-color); padding: 30px 10px; text-align: center; font-size: 13px; color: #94a3b8; }
-        
-        .footer-info-block { 
-            border: 2px solid var(--border-glow); 
-            border-radius: 12px; 
-            padding: 25px; 
-            margin: 0 auto 25px auto; 
-            background: rgba(255, 255, 255, 0.04); 
-            text-align: left; 
-            line-height: 1.7;
-            width: 100%;
-            font-size: 14px;
-        }
-        
+        .footer-info-block { border: 2px solid var(--border-glow); border-radius: 12px; padding: 25px; margin-bottom: 25px; background: rgba(255, 255, 255, 0.04); text-align: left; line-height: 1.7; width: 100%; font-size: 14px; }
         .footer-link { color: var(--accent-green); text-decoration: underline; cursor: pointer; padding: 0 8px; font-weight: 900; border: none; background: none; font-size: 13px; }
         
         .modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); overflow-y: auto; }
@@ -97,13 +79,13 @@
     <div class="ad-space">ADVERTISEMENT AREA</div>
     
     <div class="converter-box">
-        <div class="row"><label id="lbl-amount" for="amount">Amount:</label><input type="number" id="amount" class="input-field" value="10000" oninput="calculate()"></div>
-        <div class="row"><label id="lbl-interest" for="interest">Interest %:</label><input type="number" id="interest" class="input-field" value="5" step="0.1" oninput="calculate()"></div>
-        <div class="row"><label id="lbl-term" for="term">Term (Y):</label><input type="number" id="term" class="input-field" value="5" oninput="calculate()"></div>
+        <div class="row"><label id="lbl-amount">Amount:</label><input type="number" id="amount" class="input-field" value="10000" oninput="calculate()"></div>
+        <div class="row"><label id="lbl-interest">Interest %:</label><input type="number" id="interest" class="input-field" value="5" step="0.1" oninput="calculate()"></div>
+        <div class="row"><label id="lbl-term">Term (Y):</label><input type="number" id="term" class="input-field" value="5" oninput="calculate()"></div>
         
         <div style="margin-top:25px; border-top: 1px solid var(--border-color); padding-top: 20px;">
-            <div class="row"><label id="lbl-monthly" for="monthlyResult">Monthly Pay:</label><input type="text" id="monthlyResult" class="input-field res-field" readonly></div>
-            <div class="row"><label id="lbl-total" for="totalResult">Total Repay:</label><input type="text" id="totalResult" class="input-field res-field" readonly></div>
+            <div class="row"><label id="lbl-monthly">Monthly Pay:</label><input type="text" id="monthlyResult" class="input-field res-field" readonly></div>
+            <div class="row"><label id="lbl-total">Total Repay:</label><input type="text" id="totalResult" class="input-field res-field" readonly></div>
         </div>
     </div>
 
@@ -140,36 +122,36 @@
             cats: ["Loan", "Mortgage"], amount: "Amount:", interest: "Interest %:", term: "Term (Y):", monthly: "Monthly Pay:", total: "Total Repay:",
             other: "Other Elite Tools", privacy: "Privacy Policy", terms: "Terms of Use",
             unit: "Unit Converter", cur: "Currency", perc: "Percentage", disc: "Discount", vat: "VAT", tip: "Tip", bmi: "BMI",
-            footer: "SmartFinance.io is a global leader in providing accessible, high-precision financial calculation tools. Our Loan and Mortgage engines are built on industry-standard annuity formulas used by major banks worldwide. We believe that financial literacy starts with clear data, which is why our platform offers instant, accurate breakdowns of interest costs and repayment schedules. Your privacy is paramount: all calculations are performed locally on your device, ensuring that sensitive financial parameters never leave your browser.",
-            seo: "<h2>Master Your Personal Finances</h2><p>Understanding the long-term impact of interest rates is crucial before committing to any credit agreement. Whether you are looking for a personal loan or a 30-year fixed-rate mortgage, our calculator provides a detailed look at your future obligations.</p><h2>Transparency in Lending</h2><p>Banks often focus on the monthly payment, but the total cost of the loan is what really matters. Use our tool to compare different scenarios and see how a slight change in interest rates or loan terms can save you thousands of dollars over time.</p>",
-            privText: "<h2>Privacy Policy</h2><p>At SmartFinance.io, we do not collect, store, or share your financial data. All input values and results are processed in real-time within your local browser environment.</p>", 
-            termsText: "<h2>Terms of Use</h2><p>Our tools are designed for educational and illustrative purposes. While we strive for 100% accuracy, results should be verified with a qualified financial advisor before making real-world commitments.</p>"
+            footer: "SmartFinance.io is a global provider of professional financial tools. Our algorithms are based on international annuity standards used by major banks. We help users understand the real cost of credit, providing accurate data on monthly payments and total interest costs. Your data is never stored: all calculations are performed locally in your browser for 100% privacy.",
+            seo: "<h2>Professional Financial Planning</h2><p>Understanding the long-term impact of interest rates is crucial before signing any contract. Our tool helps you break down complex mortgage and loan structures into manageable data. Compare scenarios to save thousands on interest.</p><h2>Total Cost Transparency</h2><p>Total repayment amount is more important than the monthly fee. We help you calculate the absolute total you will owe to the bank.</p>",
+            privText: "<h2>Privacy Policy</h2><p>At SmartFinance.io, we do not collect, store, or share your financial data. All calculations are performed in real-time within your local browser environment.</p>", 
+            termsText: "<h2>Terms of Use</h2><p>Our tools are designed for educational purposes. Results should be verified with a qualified financial advisor before making real-world commitments.</p>"
         },
         uk: {
             cats: ["Кредит", "Іпотека"], amount: "Сума:", interest: "Ставка %:", term: "Термін (р.):", monthly: "Міс. платіж:", total: "До сплати:",
             other: "Інші професійні інструменти", privacy: "Конфіденційність", terms: "Умови",
             unit: "Конвертер", cur: "Валюти", perc: "Відсотки", disc: "Знижки", vat: "ПДВ", tip: "Чайові", bmi: "ІМТ",
-            footer: "SmartFinance.io — це провідна платформа, що надає високоточні інструменти для фінансового аналізу. Наші алгоритми розрахунку кредитів та іпотек базуються на міжнародних стандартах ануїтетних платежів, які використовують найбільші банки світу. Ми прагнемо зробити фінансове планування прозорим та зрозумілим для кожного, надаючи миттєві результати щодо переплат та графіків погашення. Ваша конфіденційність є нашим пріоритетом: усі розрахунки виконуються локально у вашому браузері.",
-            seo: "<h2>Контролюйте власні фінанси</h2><p>Розуміння довгострокового впливу відсоткових ставок є критично важливим перед підписанням будь-якої кредитної угоди. Наш калькулятор допоможе вам оцінити реальне фінансове навантаження, незалежно від того, чи це споживчий кредит, чи іпотека на десятиліття.</p><h2>Прозорість кредитування</h2><p>Банки часто акцентують увагу лише на щомісячному платежі, проте справжня вартість кредиту — це загальна сума переплати. Порівнюйте різні сценарії за допомогою нашого інструменту та дізнайтеся, як зміна терміну або ставки може заощадити вам значні кошти.</p>",
+            footer: "SmartFinance.io — це глобальний постачальник професійних фінансових інструментів. Наші алгоритми базуються на міжнародних стандартах ануїтету, які використовують провідні банки. Ми допомагаємо зрозуміти реальну вартість кредиту, надаючи точні дані про платежі та відсотки. Ваші дані не зберігаються: усі розрахунки виконуються локально у вашому браузері для 100% приватності.",
+            seo: "<h2>Професійне фінансове планування</h2><p>Розуміння впливу відсоткових ставок є критично важливим перед підписанням договору. Наш інструмент допомагає розібрати складні структури іпотеки та кредитів на зрозумілі дані. Порівнюйте сценарії, щоб заощадити тисячі на відсотках.</p><h2>Прозорість повної вартості</h2><p>Загальна сума повернення важливіша за щомісячний внесок. Ми допоможемо розрахувати абсолютну суму, яку ви заборгуєте банку.</p>",
             privText: "<h2>Політика конфіденційності</h2><p>SmartFinance.io не збирає та не передає ваші дані. Усі розрахунки відбуваються виключно у вашому браузері без збереження на серверах.</p>", 
-            termsText: "<h2>Умови використання</h2><p>Результати калькулятора мають інформаційний характер. Перед прийняттям фінансових рішень обов'язково проконсультуйтеся з представником банку або фінансовим консультантом.</p>"
+            termsText: "<h2>Умови використання</h2><p>Результати калькулятора мають інформаційний характер. Перед прийняттям фінансових рішень обов'язково проконсультуйтеся з фінансовим консультантом.</p>"
         },
         es: {
             cats: ["Préstamo", "Hipoteca"], amount: "Monto:", interest: "Interés %:", term: "Años:", monthly: "Pago Mensual:", total: "Total:",
             other: "Otras herramientas", privacy: "Privacidad", terms: "Términos",
             unit: "Unidades", cur: "Monedas", perc: "Porcentaje", disc: "Descuento", vat: "IVA", tip: "Propina", bmi: "BMI",
-            footer: "SmartFinance.io es un recurso global que ofrece herramientas de cálculo financiero de alta precisión. Nuestros motores de préstamo e hipoteca se basan en fórmulas de anualidades estándar de la industria. Creemos que la libertad financiera comienza con datos claros. Su privacidad es fundamental: todos los cálculos se realizan localmente en su dispositivo.",
-            seo: "<h2>Domine sus Finanzas Personales</h2><p>Comprender el impacto a largo plazo de las tasas de interés es crucial. Nuestro calculador le ofrece una visión detallada de sus futuras obligaciones financieras.</p>",
-            privText: "<h2>Privacidad</h2><p>No almacenamos sus datos. Todo se procesa en su navegador.</p>", 
-            termsText: "<h2>Términos</h2><p>Solo para fines informativos. Consulte con un profesional financiero.</p>"
+            footer: "SmartFinance.io es un proveedor global de herramientas financieras profesionales. Nuestros algoritmos se basan en estándares internacionales utilizados por los principales bancos. Ayudamos a entender el costo real del crédito, proporcionando datos exactos. Su privacidad es total: los cálculos se realizan localmente en su navegador.",
+            seo: "<h2>Planificación Financiera Profesional</h2><p>Comprender el impacto de las tasas de interés es crucial. Nuestra herramienta ayuda a desglosar estructuras complejas de hipotecas y préstamos. Compare escenarios para ahorrar dinero en intereses.</p><h2>Transparencia del Costo Total</h2><p>El monto total de devolución es más importante que la cuota mensual. Le ayudamos a calcular el total absoluto que deberá al banco.</p>",
+            privText: "<h2>Privacidad</h2><p>No almacenamos datos. Todo se procesa en su navegador de forma segura.</p>", 
+            termsText: "<h2>Términos</h2><p>Solo fines informativos. Consulte a un asesor financiero antes de firmar compromisos reales.</p>"
         },
         de: {
             cats: ["Kredit", "Hypothek"], amount: "Betrag:", interest: "Zins %:", term: "Jahre:", monthly: "Monatsrate:", total: "Gesamt:",
             other: "Andere Tools", privacy: "Datenschutz", terms: "AGB",
             unit: "Einheiten", cur: "Währung", perc: "Prozent", disc: "Rabatt", vat: "MwSt", tip: "Trinkgeld", bmi: "BMI",
-            footer: "SmartFinance.io ist ein weltweit führender Anbieter für präzise Finanzberechnungen. Unsere Kreditrechner nutzen professionelle Annuitätenformeln. Wir helfen Ihnen, Ihre Rückzahlungen zu verstehen, ohne Ihre persönlichen Daten zu speichern. Alle Berechnungen erfolgen sicher in Ihrem Browser.",
-            seo: "<h2>Ihre Finanzen im Griff</h2><p>Das Verständnis von Zinssätzen ist der Schlüssel zur finanziellen Stabilität. Vergleichen Sie verschiedene Szenarien, um die besten Konditionen für Ihren Kredit zu finden.</p>",
-            privText: "<h2>Datenschutz</h2><p>Ihre Daten verlassen niemals Ihren Browser.</p>", 
+            footer: "SmartFinance.io ist ein globaler Anbieter professioneller Finanz-Tools. Unsere Algorithmen basieren auf internationalen Annuitätenstandards. Wir helfen Nutzern, die tatsächlichen Kreditkosten zu verstehen. Ihre Daten werden nie gespeichert: Alle Berechnungen erfolgen lokal in Ihrem Browser für 100% Datenschutz.",
+            seo: "<h2>Professionelle Finanzplanung</h2><p>Das Verständnis der Zinsauswirkungen ist vor jedem Vertragsschluss entscheidend. Unser Tool hilft Ihnen, komplexe Hypotheken- und Kreditstrukturen zu analysieren. Vergleichen Sie Szenarien, um Zinsen zu sparen.</p><h2>Transparenz der Gesamtkosten</h2><p>Der Gesamtrückzahlungsbetrag ist wichtiger als die monatliche Rate. Wir berechnen die absolute Summe, die Sie der Bank schulden werden.</p>",
+            privText: "<h2>Datenschutz</h2><p>Wir speichern keine Daten. Alle Berechnungen werden lokal auf Ihrem Gerät durchgeführt.</p>", 
             termsText: "<h2>AGB</h2><p>Diese Ergebnisse dienen der Veranschaulichung. Bitte lassen Sie sich von Ihrer Bank beraten.</p>"
         }
     };
@@ -197,7 +179,6 @@
         document.getElementById('link-privacy').innerText = l.privacy;
         document.getElementById('link-terms').innerText = l.terms;
         document.getElementById('seo-box').innerHTML = l.seo;
-        
         document.getElementById('lnk-unit').innerText = l.unit;
         document.getElementById('lnk-cur').innerText = l.cur;
         document.getElementById('lnk-perc').innerText = l.perc;
@@ -205,7 +186,6 @@
         document.getElementById('lnk-vat').innerText = l.vat;
         document.getElementById('lnk-tip').innerText = l.tip;
         document.getElementById('lnk-bmi').innerText = l.bmi;
-        
         initTabs();
     }
 
@@ -227,10 +207,8 @@
         const p = parseFloat(document.getElementById('amount').value) || 0;
         const r = (parseFloat(document.getElementById('interest').value) || 0) / 100 / 12;
         const n = (parseFloat(document.getElementById('term').value) || 0) * 12;
-        
         const mOut = document.getElementById('monthlyResult');
         const tOut = document.getElementById('totalResult');
-
         if (p > 0 && r > 0 && n > 0) {
             const x = Math.pow(1 + r, n);
             const monthly = (p * x * r) / (x - 1);
@@ -240,8 +218,7 @@
             mOut.value = (p / n).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
             tOut.value = p.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
         } else {
-            mOut.value = "0.00";
-            tOut.value = "0.00";
+            mOut.value = "0.00"; tOut.value = "0.00";
         }
     }
 
@@ -250,9 +227,7 @@
         document.getElementById('modalBody').innerHTML = type === 'privacy' ? l.privText : l.termsText;
         document.getElementById('siteModal').style.display = 'block';
     }
-
     function closeModal() { document.getElementById('siteModal').style.display = 'none'; }
-    
     updateUI();
 </script>
 </body>
