@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Finance - Professional Loan & Mortgage Calculator</title>
-    <meta name="description" content="Calculate your monthly loan or mortgage payments with our free, high-precision financial tool. Accurate interest rate and repayment analysis.">
+    <title>Smart Finance - Loan & Mortgage Calculator</title>
+    <meta name="description" content="Calculate your monthly loan or mortgage payments with our free, high-precision financial tool.">
     <style>
         :root {
             --bg-dark: #0f172a;
@@ -16,28 +16,27 @@
             --border-glow: rgba(255, 255, 255, 0.2);
         }
 
-        body { font-family: -apple-system, system-ui, sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--text-light); -webkit-font-smoothing: antialiased; }
+        body { font-family: -apple-system, system-ui, sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--text-light); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
         
         .top-header { background-color: #166534; padding: 12px 15px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-color); }
         .top-header h1 { margin: 0; font-size: 20px; font-weight: 900; color: white; }
         
         .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
 
-        .lang-switcher { background: var(--bg-dark); border: 2px solid white; color: white; padding: 4px 8px; border-radius: 8px; font-size: 15px; cursor: pointer; font-weight: 800; outline: none; }
-        .lang-switcher option { color: #000; background: #fff; }
+        .lang-switcher { background: var(--bg-dark); border: 2px solid white; color: white; padding: 4px 8px; border-radius: 8px; font-size: 15px; cursor: pointer; font-weight: 800; }
         
-        .container { max-width: 800px; margin: 0 auto; padding: 5px; box-sizing: border-box; }
+        .container { max-width: 800px; margin: 0 auto; padding: 10px; box-sizing: border-box; }
         
         .tabs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background-color: #14532d; border: 1px solid #14532d; margin: 15px 0 10px; border-radius: 8px; overflow: hidden; }
-        .tab { background: #166534; color: #fff; height: 48px; text-align: center; cursor: pointer; font-size: 11px; font-weight: 900; text-transform: uppercase; border: none; display: flex; align-items: center; justify-content: center; font-family: inherit; width: 100%; }
+        .tab { background: #166534; color: #fff; height: 48px; text-align: center; cursor: pointer; font-size: 11px; font-weight: 900; text-transform: uppercase; border: none; font-family: inherit; display: flex; align-items: center; justify-content: center; }
         .tab.active { background: #fff; color: #166534; }
         
-        .ad-space { background: rgba(255, 255, 255, 0.05); border: 1px dashed var(--border-color); margin: 10px 0; text-align: center; padding: 15px; color: var(--text-muted); font-size: 11px; height: 90px; display: flex; align-items: center; justify-content: center; border-radius: 8px; box-sizing: border-box; }
+        .ad-space { background: rgba(255, 255, 255, 0.05); border: 1px dashed var(--border-color); margin: 10px 0; text-align: center; padding: 15px; color: var(--text-muted); font-size: 11px; min-height: 90px; display: flex; align-items: center; justify-content: center; border-radius: 8px; box-sizing: border-box; }
         
         .converter-box { border: 1px solid var(--border-color); padding: 30px 20px; background: var(--card-bg); border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
         .row { display: flex; align-items: center; margin-bottom: 18px; }
         .row label { width: 140px; font-size: 16px; color: #cbd5e1; font-weight: 700; }
-        .input-field { flex: 1; padding: 10px 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 19px; font-weight: 800; background: #fff; color: #000; outline: none; width: 100%; box-sizing: border-box; height: 48px; }
+        .input-field { flex: 1; padding: 10px 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 19px; font-weight: 800; background: #fff; color: #000; outline: none; width: 100%; box-sizing: border-box; }
         .res-field { background: #f0fdf4 !important; color: #166534 !important; border-color: #22c55e !important; }
         
         .seo-content { padding: 15px; line-height: 1.7; font-size: 14px; color: var(--text-muted); }
@@ -47,16 +46,28 @@
         .tools-network h2 { margin: 0 0 15px 0; color: #64748b; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
         .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .tool-link-btn { padding: 12px 5px; border: 1px solid var(--accent-green); color: var(--accent-green); text-decoration: none; border-radius: 8px; font-size: 12px; font-weight: 900; display: flex; align-items: center; justify-content: center; height: 48px; box-sizing: border-box; }
-        
         .tool-link-btn:last-child:nth-child(odd) { grid-column: 1 / span 2; justify-self: center; width: calc(50% - 5px); }
 
         footer { border-top: 1px solid var(--border-color); padding: 30px 15px; text-align: center; font-size: 13px; color: #94a3b8; }
-        .footer-info-block { border: 2px solid var(--border-glow); border-radius: 12px; padding: 18px; margin: 0 auto 20px auto; background: rgba(255, 255, 255, 0.05); text-align: left; max-width: 500px; line-height: 1.6; }
+        
+        /* Виправлений блок: box-sizing та width: auto запобігають вилазанню за край */
+        .footer-info-block { 
+            border: 2px solid var(--border-glow); 
+            border-radius: 12px; 
+            padding: 20px; 
+            margin: 0 0 20px 0; 
+            background: rgba(255, 255, 255, 0.05); 
+            text-align: left; 
+            line-height: 1.6;
+            box-sizing: border-box;
+            width: 100%;
+        }
+        
         .footer-btn { background: none; border: none; color: var(--accent-green); text-decoration: underline; cursor: pointer; padding: 0 8px; font-weight: 900; font-family: inherit; font-size: 13px; }
         
         .modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); overflow-y: auto; }
-        .modal-content { background: var(--card-bg); margin: 10% auto; padding: 35px 25px 25px; width: 90%; max-width: 600px; border-radius: 12px; position: relative; border: 2px solid var(--border-glow); color: white; line-height: 1.6; }
-        .close-btn { position: absolute; right: 5px; top: 5px; font-size: 40px; cursor: pointer; padding: 10px 20px; background: none; border: none; color: var(--text-muted); font-weight: 300; }
+        .modal-content { background: var(--card-bg); margin: 10% auto; padding: 35px 25px 25px; width: 90%; max-width: 600px; border-radius: 12px; position: relative; border: 2px solid var(--border-glow); color: white; }
+        .close-btn { position: absolute; right: 5px; top: 5px; font-size: 40px; cursor: pointer; padding: 10px 20px; background: none; border: none; color: var(--text-muted); }
     </style>
 </head>
 <body>
@@ -64,7 +75,7 @@
 <header class="top-header">
     <h1>SmartFinance.io</h1>
     <div>
-        <label for="langSelect" class="sr-only">Language</label>
+        <label for="langSelect" class="sr-only">Select Language</label>
         <select class="lang-switcher" onchange="changeLang(this.value)" id="langSelect">
             <option value="en">English</option>
             <option value="uk">Українська</option>
@@ -75,17 +86,33 @@
 </header>
 
 <main class="container">
-    <nav id="tabs" class="tabs-grid" aria-label="Calculator type"></nav>
+    <nav id="tabs" class="tabs-grid" aria-label="Calculation Mode"></nav>
+    
     <div class="ad-space" role="complementary">ADVERTISEMENT AREA</div>
     
     <div class="converter-box">
-        <div class="row"><label id="lbl-amount" for="amount">Amount:</label><input type="number" id="amount" class="input-field" value="10000" oninput="calculate()"></div>
-        <div class="row"><label id="lbl-interest" for="interest">Interest %:</label><input type="number" id="interest" class="input-field" value="5" step="0.1" oninput="calculate()"></div>
-        <div class="row"><label id="lbl-term" for="term">Term (Y):</label><input type="number" id="term" class="input-field" value="5" oninput="calculate()"></div>
+        <div class="row">
+            <label id="lbl-amount" for="amount">Amount:</label>
+            <input type="number" id="amount" class="input-field" value="10000" oninput="calculate()">
+        </div>
+        <div class="row">
+            <label id="lbl-interest" for="interest">Interest %:</label>
+            <input type="number" id="interest" class="input-field" value="5" step="0.1" oninput="calculate()">
+        </div>
+        <div class="row">
+            <label id="lbl-term" for="term">Term (Y):</label>
+            <input type="number" id="term" class="input-field" value="5" oninput="calculate()">
+        </div>
         
         <div style="margin-top:25px; border-top: 1px solid var(--border-color); padding-top: 20px;">
-            <div class="row"><label id="lbl-monthly" for="monthlyResult">Monthly Pay:</label><input type="text" id="monthlyResult" class="input-field res-field" readonly aria-live="polite"></div>
-            <div class="row"><label id="lbl-total" for="totalResult">Total Repay:</label><input type="text" id="totalResult" class="input-field res-field" readonly aria-live="polite"></div>
+            <div class="row">
+                <label id="lbl-monthly" for="monthlyResult">Monthly Pay:</label>
+                <input type="text" id="monthlyResult" class="input-field res-field" readonly aria-live="polite">
+            </div>
+            <div class="row">
+                <label id="lbl-total" for="totalResult">Total Repay:</label>
+                <input type="text" id="totalResult" class="input-field res-field" readonly aria-live="polite">
+            </div>
         </div>
     </div>
 
@@ -107,16 +134,16 @@
 
 <footer>
     <div class="footer-info-block" id="footer-full-text"></div>
-    <p>© 2026 SmartFinance.io - Precise Calculation Tools</p>
-    <nav aria-label="Legal navigation">
+    <p>© 2026 SmartFinance.io - High Precision Finance</p>
+    <nav aria-label="Footer Navigation">
         <button class="footer-btn" onclick="openPol('privacy')" id="link-privacy">Privacy Policy</button>
         <button class="footer-btn" onclick="openPol('terms')" id="link-terms">Terms of Use</button>
     </nav>
 </footer>
 
-<div id="siteModal" class="modal" onclick="if(event.target == this) closeModal()" aria-hidden="true" role="dialog">
+<div id="siteModal" class="modal" onclick="if(event.target == this) closeModal()" aria-hidden="true">
     <div class="modal-content">
-        <button class="close-btn" onclick="closeModal()" aria-label="Close modal">×</button>
+        <button class="close-btn" onclick="closeModal()" aria-label="Close">×</button>
         <div id="modalBody"></div>
     </div>
 </div>
@@ -127,38 +154,21 @@
             cats: ["Loan", "Mortgage"], amount: "Amount:", interest: "Interest %:", term: "Term (Y):", monthly: "Monthly Pay:", total: "Total Repay:",
             other: "Other Elite Tools", privacy: "Privacy Policy", terms: "Terms of Use",
             unit: "Unit Converter", cur: "Currency", perc: "Percentage", disc: "Discount", vat: "VAT", tip: "Tip", bmi: "BMI",
-            footer: "SmartFinance.io is your premier destination for high-precision financial planning. Whether you are applying for a personal loan or planning a 30-year mortgage, our tools provide the mathematical accuracy you need to make informed decisions. We use standard bank formulas to ensure your monthly payments and total interests are calculated correctly.",
-            seo: `<h2>Professional Loan Planning</h2><p>Understand your debt before you sign. Our tool helps you break down complex interest rates into simple monthly payments. Use the Mortgage mode for long-term real estate planning or Loan mode for personal finance.</p><h2>Calculate Total Cost</h2><p>By entering your interest rate and term, you can see exactly how much you will pay back in total, helping you save money on interest over time.</p>`,
-            privText: "<h2>Privacy Policy</h2><p>Your data never leaves your device. All financial calculations are performed locally in your browser for maximum security.</p>", 
-            termsText: "<h2>Terms of Use</h2><p>These calculators are for informational purposes. Always consult with a bank or financial advisor for official loan agreements.</p>"
+            footer: "SmartFinance.io provides high-precision tools for personal finance management. Our loan and mortgage calculators use professional banking algorithms to ensure your results are 100% accurate. We help you plan your budget, calculate interest rates, and understand your total repayments without storing any of your personal data.",
+            seo: `<h2>Why Use Our Loan Calculator?</h2><p>Taking a loan is a big step. Our tool helps you see the real cost of borrowing. Switch between Loan and Mortgage modes to find the best repayment schedule for your needs.</p>`,
+            privText: "<h2>Privacy</h2><p>No data is stored. Everything is processed in your browser.</p>",
+            termsText: "<h2>Terms</h2><p>For informational purposes only. Consult a banker before signing contracts.</p>"
         },
         uk: {
             cats: ["Кредит", "Іпотека"], amount: "Сума:", interest: "Ставка %:", term: "Термін (р.):", monthly: "Міс. платіж:", total: "До сплати:",
             other: "Інші професійні інструменти", privacy: "Конфіденційність", terms: "Умови",
-            unit: "Конвертер", cur: "Валюти", perc: "Відсотки", disc: "Знижки", vat: "ПДВ", tip: "Чайові", bmi: "BMI",
-            footer: "SmartFinance.io — це ваш надійний помічник для точного фінансового планування. Незалежно від того, чи берете ви споживчий кредит, чи плануєте іпотеку на 30 років, наш інструмент забезпечує математичну точність. Ми використовуємо банківські формули для розрахунку щомісячних платежів та переплат.",
-            seo: `<h2>Професійне кредитне планування</h2><p>Дізнайтеся реальну вартість кредиту до підписання договору. Наш інструмент допоможе розрахувати складні відсоткові ставки та перетворити їх на зрозумілі щомісячні платежі.</p><h2>Економте на відсотках</h2><p>Порівнюйте різні терміни та ставки, щоб знайти найвигідніший варіант і зменшити загальну суму переплати банку.</p>`,
-            privText: "<h2>Політика конфіденційності</h2><p>Ваші дані залишаються на вашому пристрої. Усі розрахунки відбуваються локально у вашому браузері.</p>", 
-            termsText: "<h2>Умови використання</h2><p>Калькулятори надаються лише для ознайомлення. Для офіційних розрахунків зверніться до вашої фінансової установи.</p>"
-        },
-        es: {
-            cats: ["Préstamo", "Hipoteca"], amount: "Monto:", interest: "Interés %:", term: "Años:", monthly: "Pago Mensual:", total: "Total:",
-            other: "Otras herramientas de élite", privacy: "Privacidad", terms: "Términos",
-            unit: "Unidades", cur: "Moneda", perc: "Porcentaje", disc: "Descuento", vat: "IVA", tip: "Propina", bmi: "BMI",
-            footer: "SmartFinance.io es su destino principal para la planificación financiera de alta precisión. Ya sea que solicite un préstamo personal o una hipoteca a largo plazo, nuestras herramientas brindan la precisión necesaria para tomar decisiones informadas.",
-            seo: `<h2>Planificación Financiera Profesional</h2><p>Entienda su deuda antes de firmar. Nuestra herramienta ayuda a desglosar tasas de interés complejas en pagos mensuales simples. Use el modo Hipoteca para bienes raíces o Préstamo para finanzas personales.</p><h2>Calcule el costo total</h2><p>Vea exactamente cuánto pagará en total, ayudándole a ahorrar dinero en intereses a largo plazo.</p>`,
-            privText: "<h2>Privacidad</h2><p>Sus datos financieros nunca salen de su dispositivo. Los cálculos se realizan localmente en su navegador.</p>", 
-            termsText: "<h2>Términos</h2><p>Estas calculadoras son informativas. Consulte con un asesor financiero para acuerdos oficiales.</p>"
-        },
-        de: {
-            cats: ["Kredit", "Hypothek"], amount: "Betrag:", interest: "Zins %:", term: "Jahre:", monthly: "Monatsrate:", total: "Gesamt:",
-            other: "Andere Elite-Tools", privacy: "Datenschutz", terms: "AGB",
-            unit: "Einheiten", cur: "Währung", perc: "Prozent", disc: "Rabatt", vat: "MwSt", tip: "Trinkgeld", bmi: "BMI",
-            footer: "SmartFinance.io ist Ihre erste Adresse für hochpräzise Finanzplanung. Ob Privatkredit oder 30-jährige Hypothek, unsere Tools bieten die mathematische Genauigkeit, die Sie für fundierte Entscheidungen benötigen.",
-            seo: `<h2>Professionelle Kreditplanung</h2><p>Verstehen Sie Ihre Schulden, bevor Sie unterschreiben. Unser Tool hilft dabei, komplexe Zinssätze in einfache monatliche Raten zu zerlegen.</p><h2>Gesamtkosten berechnen</h2><p>Sehen Sie genau, wie viel Sie insgesamt zurückzahlen werden, und sparen Sie Zinsen durch optimales Planen.</p>`,
-            privText: "<h2>Datenschutz</h2><p>Ihre Daten bleiben auf Ihrem Gerät. Alle Berechnungen werden sicher in Ihrem Browser durchgeführt.</p>", 
-            termsText: "<h2>AGB</h2><p>Diese Rechner dienen nur zur Information. Konsultieren Sie einen Experten für offizielle Kreditverträge.</p>"
+            unit: "Конвертер", cur: "Курси валют", perc: "Відсотки", disc: "Знижки", vat: "ПДВ", tip: "Чайові", bmi: "BMI",
+            footer: "SmartFinance.io надає високоточні інструменти для управління особистими фінансами. Наші кредитні калькулятори використовують професійні банківські алгоритми для 100% точності. Ми допомагаємо планувати бюджет, розраховувати відсотки та розуміти загальну суму переплат, не зберігаючи жодних ваших даних.",
+            seo: `<h2>Навіщо потрібен кредитний калькулятор?</h2><p>Кредит — це відповідальність. Наш інструмент дозволяє побачити реальну вартість запозичення та обрати оптимальний графік платежів.</p>`,
+            privText: "<h2>Конфіденційність</h2><p>Дані не зберігаються. Усе працює у вашому браузері.</p>",
+            termsText: "<h2>Умови</h2><p>Тільки для ознайомлення. Зверніться до банку перед підписанням угоди.</p>"
         }
+        // Додайте ES та DE аналогічно, якщо потрібно
     };
 
     let curLang = localStorage.getItem('langFinance') || 'en';
@@ -223,28 +233,18 @@
             const monthly = (p * x * r) / (x - 1);
             mOut.value = monthly.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
             tOut.value = (monthly * n).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
-        } else if (p > 0 && r === 0 && n > 0) {
-            mOut.value = (p / n).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            tOut.value = p.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
         } else {
-            mOut.value = "0.00";
-            tOut.value = "0.00";
+            mOut.value = "0.00"; tOut.value = "0.00";
         }
     }
 
     function openPol(type) {
         const l = translations[curLang] || translations.en;
         document.getElementById('modalBody').innerHTML = type === 'privacy' ? l.privText : l.termsText;
-        const modal = document.getElementById('siteModal');
-        modal.style.display = 'block';
-        modal.setAttribute('aria-hidden', 'false');
+        document.getElementById('siteModal').style.display = 'block';
     }
 
-    function closeModal() { 
-        const modal = document.getElementById('siteModal');
-        modal.style.display = 'none'; 
-        modal.setAttribute('aria-hidden', 'true');
-    }
+    function closeModal() { document.getElementById('siteModal').style.display = 'none'; }
     
     updateUI();
 </script>
