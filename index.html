@@ -9,9 +9,9 @@
         :root {
             --bg-dark: #0f172a;
             --card-bg: #1e293b;
-            --accent-green: #4ade80; /* Покращений контраст для 100% Accessibility */
+            --accent-green: #4ade80; /* Високий контраст для Accessibility */
             --text-light: #f8fafc;
-            --text-muted: #94a3b8;
+            --text-muted: #cbd5e1; /* Покращено з #94a3b8 для чіткості */
             --border-color: #334155;
             --border-glow: rgba(255, 255, 255, 0.2);
         }
@@ -38,19 +38,20 @@
         .row { display: flex; align-items: center; margin-bottom: 18px; }
         .row label { width: 140px; font-size: 16px; color: #cbd5e1; font-weight: 700; }
         .input-field { flex: 1; padding: 10px 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 19px; font-weight: 800; background: #fff; color: #000; outline: none; width: 100%; box-sizing: border-box; height: 48px; }
-        .res-field { background: #f0fdf4 !important; color: #166534 !important; border-color: var(--accent-green) !important; }
+        .res-field { background: #f0fdf4 !important; color: #166534 !important; border-color: var(--accent-green) !important; font-weight: 900; }
         
         .seo-content { padding: 15px; line-height: 1.7; font-size: 14px; color: var(--text-muted); }
         .seo-content h2 { color: var(--accent-green); font-size: 19px; margin: 20px 0 10px; border-bottom: 1px solid var(--border-color); padding-bottom: 5px; font-weight: 900; }
 
         .tools-network { padding: 20px 15px; text-align: center; border-top: 1px solid var(--border-color); margin-top: 20px; }
-        .tools-network h2 { margin: 0 0 15px 0; color: #64748b; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
+        .tools-network h2 { margin: 0 0 15px 0; color: #94a3b8; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
         .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .tool-link-btn { padding: 12px 5px; border: 2px solid var(--accent-green); color: var(--accent-green); text-decoration: none; border-radius: 8px; font-size: 12px; font-weight: 900; display: flex; align-items: center; justify-content: center; height: 48px; box-sizing: border-box; }
+        .tool-link-btn { padding: 12px 5px; border: 2px solid var(--accent-green); color: var(--accent-green); text-decoration: none; border-radius: 8px; font-size: 12px; font-weight: 900; display: flex; align-items: center; justify-content: center; height: 48px; box-sizing: border-box; transition: background 0.2s; }
+        .tool-link-btn:hover { background: rgba(74, 222, 128, 0.1); }
         
         .tool-link-btn:last-child:nth-child(odd) { grid-column: 1 / span 2; justify-self: center; width: calc(50% - 5px); }
 
-        footer { border-top: 1px solid var(--border-color); padding: 30px 15px; text-align: center; font-size: 13px; color: #94a3b8; box-sizing: border-box; width: 100%; }
+        footer { border-top: 1px solid var(--border-color); padding: 30px 15px; text-align: center; font-size: 13px; color: var(--text-muted); box-sizing: border-box; width: 100%; }
         .footer-info-block { 
             border: 2px solid var(--border-glow); 
             border-radius: 12px; 
@@ -62,6 +63,7 @@
             width: 480px; 
             box-sizing: border-box; 
             line-height: 1.6; 
+            color: var(--text-muted);
         }
         .footer-btn { background: none; border: none; color: var(--accent-green); text-decoration: underline; cursor: pointer; padding: 10px; font-weight: 900; font-family: inherit; font-size: 13px; min-height: 44px; }
         
@@ -75,7 +77,7 @@
 <header class="top-header">
     <h1>SmartFinance.io</h1>
     <div>
-        <label for="langSelect" class="sr-only">Language</label>
+        <label for="langSelect" class="sr-only">Language Selector</label>
         <select class="lang-switcher" onchange="changeLang(this.value)" id="langSelect">
             <option value="en">English</option>
             <option value="uk">Українська</option>
@@ -86,13 +88,13 @@
 </header>
 
 <main class="container">
-    <nav id="tabs" class="tabs-grid" aria-label="Calculator type"></nav>
+    <nav id="tabs" class="tabs-grid" aria-label="Calculator type Selection"></nav>
     <div class="ad-space" role="complementary">ADVERTISEMENT AREA</div>
     
     <div class="converter-box">
-        <div class="row"><label id="lbl-amount" for="amount">Amount:</label><input type="number" id="amount" class="input-field" value="10000" oninput="calculate()"></div>
-        <div class="row"><label id="lbl-interest" for="interest">Interest %:</label><input type="number" id="interest" class="input-field" value="5" step="0.1" oninput="calculate()"></div>
-        <div class="row"><label id="lbl-term" for="term">Term (Y):</label><input type="number" id="term" class="input-field" value="5" oninput="calculate()"></div>
+        <div class="row"><label id="lbl-amount" for="amount">Amount:</label><input type="number" id="amount" class="input-field" value="10000" oninput="calculate()" aria-required="true"></div>
+        <div class="row"><label id="lbl-interest" for="interest">Interest %:</label><input type="number" id="interest" class="input-field" value="5" step="0.1" oninput="calculate()" aria-required="true"></div>
+        <div class="row"><label id="lbl-term" for="term">Term (Y):</label><input type="number" id="term" class="input-field" value="5" oninput="calculate()" aria-required="true"></div>
         
         <div style="margin-top:25px; border-top: 1px solid var(--border-color); padding-top: 20px;">
             <div class="row"><label id="lbl-monthly" for="monthlyResult">Monthly Pay:</label><input type="text" id="monthlyResult" class="input-field res-field" readonly aria-live="polite"></div>
@@ -105,13 +107,13 @@
     <section class="tools-network">
         <h2 id="txt-other-tools">Other Elite Tools</h2>
         <div class="tools-grid">
-            <a href="https://smart-converter.github.io/unit-converter/" class="tool-link-btn" id="lnk-unit" aria-label="Unit Converter">Unit Converter</a>
-            <a href="https://smart-converter.github.io/currency-converter/" class="tool-link-btn" id="lnk-cur" aria-label="Currency Converter">Currency</a>
-            <a href="https://smart-converter.github.io/percentage-calculator/" class="tool-link-btn" id="lnk-perc" aria-label="Percentage Calculator">Percentage</a>
-            <a href="https://smart-converter.github.io/discount-calculator/" class="tool-link-btn" id="lnk-disc" aria-label="Discount Calculator">Discount</a>
-            <a href="https://smart-converter.github.io/vat-calculator/" class="tool-link-btn" id="lnk-vat" aria-label="VAT Calculator">VAT</a>
-            <a href="https://smart-converter.github.io/tip-calculator/" class="tool-link-btn" id="lnk-tip" aria-label="Tip Calculator">Tip</a>
-            <a href="https://smart-converter.github.io/bmi-calculator/" class="tool-link-btn" id="lnk-bmi" aria-label="BMI Calculator">BMI</a>
+            <a href="https://smart-converter.github.io/unit-converter/" class="tool-link-btn" id="lnk-unit">Unit Converter</a>
+            <a href="https://smart-converter.github.io/currency-converter/" class="tool-link-btn" id="lnk-cur">Currency</a>
+            <a href="https://smart-converter.github.io/percentage-calculator/" class="tool-link-btn" id="lnk-perc">Percentage</a>
+            <a href="https://smart-converter.github.io/discount-calculator/" class="tool-link-btn" id="lnk-disc">Discount</a>
+            <a href="https://smart-converter.github.io/vat-calculator/" class="tool-link-btn" id="lnk-vat">VAT</a>
+            <a href="https://smart-converter.github.io/tip-calculator/" class="tool-link-btn" id="lnk-tip">Tip</a>
+            <a href="https://smart-converter.github.io/bmi-calculator/" class="tool-link-btn" id="lnk-bmi">BMI</a>
         </div>
     </section>
 </main>
@@ -120,12 +122,12 @@
     <div class="footer-info-block" id="footer-full-text"></div>
     <p>© 2026 SmartFinance.io - Precise Calculation Tools</p>
     <nav aria-label="Legal navigation">
-        <button class="footer-btn" onclick="openPol('privacy')" id="link-privacy" aria-label="Privacy Policy">Privacy Policy</button>
-        <button class="footer-btn" onclick="openPol('terms')" id="link-terms" aria-label="Terms of Use">Terms of Use</button>
+        <button class="footer-btn" onclick="openPol('privacy')" id="link-privacy">Privacy Policy</button>
+        <button class="footer-btn" onclick="openPol('terms')" id="link-terms">Terms of Use</button>
     </nav>
 </footer>
 
-<div id="siteModal" class="modal" onclick="if(event.target == this) closeModal()" aria-hidden="true" role="dialog">
+<div id="siteModal" class="modal" onclick="if(event.target == this) closeModal()" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="modal-content">
         <button class="close-btn" onclick="closeModal()" aria-label="Close modal">×</button>
         <div id="modalBody"></div>
@@ -159,8 +161,8 @@
             cats: ["Préstamo", "Hipoteca"], amount: "Monto:", interest: "Interés %:", term: "Años:", monthly: "Pago Mensual:", total: "Total:",
             other: "Otras herramientas de élite", privacy: "Privacidad", terms: "Términos",
             unit: "Unidades", cur: "Moneda", perc: "Porcentaje", disc: "Descuento", vat: "IVA", tip: "Propina", bmi: "BMI",
-            footer: "SmartFinance.io es su destino principal para la planificación financiera de alta precisión. Ya sea que solicite un préstamo personal o una hipoteca a largo plazo, nuestras herramientas brindan la precisión necesaria para tomar decisiones informadas.",
-            seo: `<h2>Planificación Financiera Profesional</h2><p>Entienda su deuda antes de firmar. Nuestra herramienta ayuda a desglosar tasas de interés complejas en pagos mensuales simples. Use el modo Hipoteca para bienes raíces o Préstamo para finanzas personales.</p><h2>Calcule el costo total</h2><p>Vea exactamente cuánto pagará en total, ayudándole a ahorrar dinero en intereses a largo plazo.</p>`,
+            footer: "SmartFinance.io es su destino principal para la planificación financiera de alta precisión. Nuestras herramientas brindan la precisión necesaria para tomar decisiones informadas.",
+            seo: `<h2>Planificación Financiera</h2><p>Entienda su deuda antes de firmar. Nuestra herramienta ayuda a desglosar tasas de interés complejas en pagos mensuales simples.</p><h2>Calcule el costo total</h2><p>Vea exactamente cuánto pagará en total, ayudándole a ahorrar dinero en intereses a largo plazo.</p>`,
             privText: "<h2>Privacidad</h2><p>Sus datos financieros nunca salen de su dispositivo. Los cálculos se realizan localmente en su navegador.</p>", 
             termsText: "<h2>Términos</h2><p>Estas calculadoras son informativas. Consulte con un asesor financiero para acuerdos oficiales.</p>"
         },
@@ -169,8 +171,8 @@
             cats: ["Kredit", "Hypothek"], amount: "Betrag:", interest: "Zins %:", term: "Jahre:", monthly: "Monatsrate:", total: "Gesamt:",
             other: "Andere Elite-Tools", privacy: "Datenschutz", terms: "AGB",
             unit: "Einheiten", cur: "Währung", perc: "Prozent", disc: "Rabatt", vat: "MwSt", tip: "Trinkgeld", bmi: "BMI",
-            footer: "SmartFinance.io ist Ihre erste Adresse für hochpräzise Finanzplanung. Ob Privatkredit oder 30-jährige Hypothek, unsere Tools bieten die mathematische Genauigkeit, die Sie für fundierte Entscheidungen benötigen.",
-            seo: `<h2>Professionelle Kreditplanung</h2><p>Verstehen Sie Ihre Schulden, bevor Sie unterschreiben. Unser Tool hilft dabei, komplexe Zinssätze in einfache monatliche Raten zu zerlegen.</p><h2>Gesamtkosten berechnen</h2><p>Sehen Sie genau, wie viel Sie insgesamt zurückzahlen werden, und sparen Sie Zinsen durch optimales Planen.</p>`,
+            footer: "SmartFinance.io ist Ihre erste Adresse für hochpräzise Finanzplanung. Unsere Tools bieten die mathematische Genauigkeit, die Sie benötigen.",
+            seo: `<h2>Professionelle Kreditplanung</h2><p>Verstehen Sie Ihre Schulden, bevor Sie unterschreiben. Unser Tool hilft dabei, komplexe Zinssätze in einfache monatliche Raten zu zerlegen.</p><h2>Gesamtkosten berechnen</h2><p>Sehen Sie genau, wie viel Sie insgesamt zurückzahlen werden.</p>`,
             privText: "<h2>Datenschutz</h2><p>Ihre Daten bleiben auf Ihrem Gerät. Alle Berechnungen werden sicher in Ihrem Browser durchgeführt.</p>", 
             termsText: "<h2>AGB</h2><p>Diese Rechner dienen nur zur Information. Konsultieren Sie einen Experten für offizielle Kreditverträge.</p>"
         }
@@ -220,7 +222,7 @@
             const btn = document.createElement('button');
             btn.className = `tab ${i === currentTab ? 'active' : ''}`;
             btn.innerText = cat;
-            btn.setAttribute('aria-label', cat);
+            btn.setAttribute('aria-label', `Select ${cat} calculator`);
             btn.onclick = () => { currentTab = i; initTabs(); calculate(); };
             t.appendChild(btn);
         });
