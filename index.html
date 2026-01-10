@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Finance - Professional Loan & Mortgage Calculator</title>
-    <meta name="description" content="Calculate your monthly loan or mortgage payments with our free, high-precision financial tool. Accurate interest rate and repayment analysis.">
+    <meta id="meta-desc" name="description" content="Calculate your monthly loan or mortgage payments with our free, high-precision financial tool. Accurate interest rate and repayment analysis.">
     <style>
         :root {
             --bg-dark: #0f172a;
@@ -23,7 +23,7 @@
         
         .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
 
-        .lang-switcher { background: var(--bg-dark); border: 2px solid white; color: white; padding: 4px 8px; border-radius: 8px; font-size: 15px; cursor: pointer; font-weight: 800; outline: none; }
+        .lang-switcher { background: var(--bg-dark); border: 2px solid white; color: white; padding: 4px 8px; border-radius: 8px; font-size: 15px; cursor: pointer; font-weight: 800; outline: none; min-height: 44px; }
         .lang-switcher option { color: #000; background: #fff; }
         
         .container { max-width: 800px; margin: 0 auto; padding: 5px; box-sizing: border-box; }
@@ -51,12 +51,13 @@
         .tool-link-btn:last-child:nth-child(odd) { grid-column: 1 / span 2; justify-self: center; width: calc(50% - 5px); }
 
         footer { border-top: 1px solid var(--border-color); padding: 30px 15px; text-align: center; font-size: 13px; color: #94a3b8; }
-        .footer-info-block { border: 2px solid var(--border-glow); border-radius: 12px; padding: 18px; margin: 0 auto 20px auto; background: rgba(255, 255, 255, 0.05); text-align: left; max-width: 500px; line-height: 1.6; }
-        .footer-btn { background: none; border: none; color: var(--accent-green); text-decoration: underline; cursor: pointer; padding: 0 8px; font-weight: 900; font-family: inherit; font-size: 13px; }
+        /* ВИПРАВЛЕНО РАМКУ ФУТЕРА */
+        .footer-info-block { border: 2px solid var(--border-glow); border-radius: 12px; padding: 18px; margin: 0 auto 20px auto; background: rgba(255, 255, 255, 0.05); text-align: left; max-width: 500px; width: 95%; box-sizing: border-box; line-height: 1.6; }
+        .footer-btn { background: none; border: none; color: var(--accent-green); text-decoration: underline; cursor: pointer; padding: 8px; font-weight: 900; font-family: inherit; font-size: 13px; min-height: 44px; }
         
         .modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); overflow-y: auto; }
         .modal-content { background: var(--card-bg); margin: 10% auto; padding: 35px 25px 25px; width: 90%; max-width: 600px; border-radius: 12px; position: relative; border: 2px solid var(--border-glow); color: white; line-height: 1.6; }
-        .close-btn { position: absolute; right: 5px; top: 5px; font-size: 40px; cursor: pointer; padding: 10px 20px; background: none; border: none; color: var(--text-muted); font-weight: 300; }
+        .close-btn { position: absolute; right: 5px; top: 5px; font-size: 40px; cursor: pointer; padding: 10px 20px; background: none; border: none; color: var(--text-muted); font-weight: 300; min-height: 44px; }
     </style>
 </head>
 <body>
@@ -94,13 +95,13 @@
     <section class="tools-network">
         <h2 id="txt-other-tools">Other Elite Tools</h2>
         <div class="tools-grid">
-            <a href="https://smart-converter.github.io/unit-converter/" class="tool-link-btn" id="lnk-unit">Unit Converter</a>
-            <a href="https://smart-converter.github.io/currency-converter/" class="tool-link-btn" id="lnk-cur">Currency Converter</a>
-            <a href="https://smart-converter.github.io/percentage-calculator/" class="tool-link-btn" id="lnk-perc">Percentage Calc</a>
-            <a href="https://smart-converter.github.io/discount-calculator/" class="tool-link-btn" id="lnk-disc">Discount Calc</a>
-            <a href="https://smart-converter.github.io/vat-calculator/" class="tool-link-btn" id="lnk-vat">VAT Calculator</a>
-            <a href="https://smart-converter.github.io/tip-calculator/" class="tool-link-btn" id="lnk-tip">Tip Calculator</a>
-            <a href="https://smart-converter.github.io/bmi-calculator/" class="tool-link-btn" id="lnk-bmi">BMI Calculator</a>
+            <a href="https://smart-converter.github.io/unit-converter/" class="tool-link-btn" id="lnk-unit" aria-label="Unit Converter">Unit Converter</a>
+            <a href="https://smart-converter.github.io/currency-converter/" class="tool-link-btn" id="lnk-cur" aria-label="Currency Converter">Currency Converter</a>
+            <a href="https://smart-converter.github.io/percentage-calculator/" class="tool-link-btn" id="lnk-perc" aria-label="Percentage Calculator">Percentage Calc</a>
+            <a href="https://smart-converter.github.io/discount-calculator/" class="tool-link-btn" id="lnk-disc" aria-label="Discount Calculator">Discount Calc</a>
+            <a href="https://smart-converter.github.io/vat-calculator/" class="tool-link-btn" id="lnk-vat" aria-label="VAT Calculator">VAT Calculator</a>
+            <a href="https://smart-converter.github.io/tip-calculator/" class="tool-link-btn" id="lnk-tip" aria-label="Tip Calculator">Tip Calculator</a>
+            <a href="https://smart-converter.github.io/bmi-calculator/" class="tool-link-btn" id="lnk-bmi" aria-label="BMI Calculator">BMI Calculator</a>
         </div>
     </section>
 </main>
@@ -124,6 +125,7 @@
 <script>
     const translations = {
         en: {
+            desc: "Calculate your monthly loan or mortgage payments with our free tool.",
             cats: ["Loan", "Mortgage"], amount: "Amount:", interest: "Interest %:", term: "Term (Y):", monthly: "Monthly Pay:", total: "Total Repay:",
             other: "Other Elite Tools", privacy: "Privacy Policy", terms: "Terms of Use",
             unit: "Unit Converter", cur: "Currency", perc: "Percentage", disc: "Discount", vat: "VAT", tip: "Tip", bmi: "BMI",
@@ -133,6 +135,7 @@
             termsText: "<h2>Terms of Use</h2><p>These calculators are for informational purposes. Always consult with a bank or financial advisor for official loan agreements.</p>"
         },
         uk: {
+            desc: "Професійний калькулятор кредиту та іпотеки. Розрахуйте щомісячний платіж та переплату.",
             cats: ["Кредит", "Іпотека"], amount: "Сума:", interest: "Ставка %:", term: "Термін (р.):", monthly: "Міс. платіж:", total: "До сплати:",
             other: "Інші професійні інструменти", privacy: "Конфіденційність", terms: "Умови",
             unit: "Конвертер", cur: "Валюти", perc: "Відсотки", disc: "Знижки", vat: "ПДВ", tip: "Чайові", bmi: "BMI",
@@ -142,6 +145,7 @@
             termsText: "<h2>Умови використання</h2><p>Калькулятори надаються лише для ознайомлення. Для офіційних розрахунків зверніться до вашої фінансової установи.</p>"
         },
         es: {
+            desc: "Calculadora de préstamos e hipotecas. Calcula tus pagos mensuales con precisión.",
             cats: ["Préstamo", "Hipoteca"], amount: "Monto:", interest: "Interés %:", term: "Años:", monthly: "Pago Mensual:", total: "Total:",
             other: "Otras herramientas de élite", privacy: "Privacidad", terms: "Términos",
             unit: "Unidades", cur: "Moneda", perc: "Porcentaje", disc: "Descuento", vat: "IVA", tip: "Propina", bmi: "BMI",
@@ -151,6 +155,7 @@
             termsText: "<h2>Términos</h2><p>Estas calculadoras son informativas. Consulte con un asesor financiero para acuerdos oficiales.</p>"
         },
         de: {
+            desc: "Kreditrechner für Hypotheken und Privatkredite. Berechnen Sie Ihre monatliche Rate.",
             cats: ["Kredit", "Hypothek"], amount: "Betrag:", interest: "Zins %:", term: "Jahre:", monthly: "Monatsrate:", total: "Gesamt:",
             other: "Andere Elite-Tools", privacy: "Datenschutz", terms: "AGB",
             unit: "Einheiten", cur: "Währung", perc: "Prozent", disc: "Rabatt", vat: "MwSt", tip: "Trinkgeld", bmi: "BMI",
@@ -173,6 +178,7 @@
     function updateUI() {
         const l = translations[curLang] || translations.en;
         document.documentElement.lang = curLang;
+        document.getElementById('meta-desc').content = l.desc;
         document.getElementById('langSelect').value = curLang;
         document.getElementById('lbl-amount').innerText = l.amount;
         document.getElementById('lbl-interest').innerText = l.interest;
@@ -204,6 +210,7 @@
             const btn = document.createElement('button');
             btn.className = `tab ${i === currentTab ? 'active' : ''}`;
             btn.innerText = cat;
+            btn.setAttribute('aria-label', cat);
             btn.onclick = () => { currentTab = i; initTabs(); calculate(); };
             t.appendChild(btn);
         });
