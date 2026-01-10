@@ -4,10 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Finance - Professional Loan & Mortgage Calculator</title>
-    <meta name="description" content="Calculate your loan and mortgage payments with high precision. Professional financial tools for smart planning.">
-    
-    <link rel="canonical" href="https://smartfinance.io/">
-
+    <meta name="description" content="Calculate your monthly loan or mortgage payments with our free, high-precision financial tool. Accurate interest rate and repayment analysis.">
     <style>
         :root {
             --bg-dark: #0f172a;
@@ -16,273 +13,239 @@
             --text-light: #f8fafc;
             --text-muted: #94a3b8;
             --border-color: #334155;
-            --header-green: #166534;
+            --border-glow: rgba(255, 255, 255, 0.2);
         }
 
-        * { box-sizing: border-box; }
+        body { font-family: -apple-system, system-ui, sans-serif; margin: 0; padding: 0; background-color: var(--bg-dark); color: var(--text-light); -webkit-font-smoothing: antialiased; }
         
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
-            margin: 0; padding: 0; 
-            background-color: var(--bg-dark); 
-            color: var(--text-light); 
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* Accessibility: Skip to content */
-        .skip-link { position: absolute; top: -40px; left: 0; background: var(--accent-green); color: white; padding: 8px; z-index: 100; transition: top 0.3s; }
-        .skip-link:focus { top: 0; }
-
-        header { background-color: var(--header-green); padding: 15px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-color); }
-        h1 { margin: 0; font-size: 22px; font-weight: 900; color: #ffffff; }
-
-        .lang-switcher { 
-            background: var(--bg-dark); 
-            border: 2px solid #ffffff; 
-            color: #ffffff; 
-            padding: 8px 12px; 
-            border-radius: 8px; 
-            font-size: 14px; 
-            font-weight: 800; 
-            cursor: pointer;
-            min-width: 60px;
-            min-height: 44px; /* PageSpeed: Tap target size */
-        }
-
-        .container { max-width: 800px; margin: 0 auto; padding: 15px; width: 100%; }
-
-        /* Tabs - Improved for Accessibility */
-        .tabs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background-color: #14532d; border-radius: 10px; overflow: hidden; margin: 15px 0; border: 1px solid #14532d; }
-        .tab { 
-            background: var(--header-green); 
-            color: #ffffff; 
-            height: 54px; 
-            border: none; 
-            cursor: pointer; 
-            font-weight: 900; 
-            text-transform: uppercase; 
-            font-size: 13px;
-            transition: 0.2s;
-            font-family: inherit;
-        }
-        .tab.active { background: #ffffff; color: var(--header-green); }
-        .tab:focus { outline: 3px solid var(--accent-green); outline-offset: -3px; }
-
-        /* Calculator Box */
-        .card { background: var(--card-bg); border: 1px solid var(--border-color); padding: 25px; border-radius: 16px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3); }
-        .row { display: flex; flex-direction: column; margin-bottom: 20px; }
-        @media (min-width: 600px) { .row { flex-direction: row; align-items: center; } }
+        .top-header { background-color: #166534; padding: 12px 15px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-color); }
+        .top-header h1 { margin: 0; font-size: 20px; font-weight: 900; color: white; }
         
-        label { font-size: 16px; font-weight: 700; color: #cbd5e1; margin-bottom: 8px; }
-        @media (min-width: 600px) { label { width: 180px; margin-bottom: 0; } }
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
 
-        .input-field { 
-            width: 100%; 
-            padding: 14px; 
-            border-radius: 10px; 
-            border: 1px solid var(--border-color); 
-            font-size: 18px; 
-            font-weight: 800; 
-            background: #ffffff; 
-            color: #000000;
-            min-height: 48px;
-        }
-        .res-field { background: #f0fdf4 !important; color: #166534 !important; border: 2px solid var(--accent-green) !important; }
-
-        /* Tools Grid - FIXED FOR PAGESPEED */
-        .tools-section { margin-top: 40px; text-align: center; }
-        .tools-section h2 { font-size: 14px; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 20px; }
-        .tools-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-        @media (min-width: 600px) { .tools-grid { grid-template-columns: repeat(4, 1fr); } }
+        .lang-switcher { background: var(--bg-dark); border: 2px solid white; color: white; padding: 4px 8px; border-radius: 8px; font-size: 15px; cursor: pointer; font-weight: 800; outline: none; }
+        .lang-switcher option { color: #000; background: #fff; }
         
-        .tool-btn { 
-            display: flex; align-items: center; justify-content: center; 
-            padding: 15px 10px; border: 1px solid var(--accent-green); 
-            border-radius: 10px; color: var(--accent-green); 
-            text-decoration: none; font-weight: 800; font-size: 13px;
-            min-height: 48px; transition: 0.2s;
-        }
-        .tool-btn:hover { background: rgba(34, 197, 94, 0.1); }
+        .container { max-width: 800px; margin: 0 auto; padding: 5px; box-sizing: border-box; }
+        
+        .tabs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background-color: #14532d; border: 1px solid #14532d; margin: 15px 0 10px; border-radius: 8px; overflow: hidden; }
+        .tab { background: #166534; color: #fff; height: 48px; text-align: center; cursor: pointer; font-size: 11px; font-weight: 900; text-transform: uppercase; border: none; display: flex; align-items: center; justify-content: center; font-family: inherit; width: 100%; }
+        .tab.active { background: #fff; color: #166534; }
+        
+        .ad-space { background: rgba(255, 255, 255, 0.05); border: 1px dashed var(--border-color); margin: 10px 0; text-align: center; padding: 15px; color: var(--text-muted); font-size: 11px; height: 90px; display: flex; align-items: center; justify-content: center; border-radius: 8px; box-sizing: border-box; }
+        
+        .converter-box { border: 1px solid var(--border-color); padding: 30px 20px; background: var(--card-bg); border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
+        .row { display: flex; align-items: center; margin-bottom: 18px; }
+        .row label { width: 140px; font-size: 16px; color: #cbd5e1; font-weight: 700; }
+        .input-field { flex: 1; padding: 10px 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 19px; font-weight: 800; background: #fff; color: #000; outline: none; width: 100%; box-sizing: border-box; height: 48px; }
+        .res-field { background: #f0fdf4 !important; color: #166534 !important; border-color: #22c55e !important; }
+        
+        .seo-content { padding: 15px; line-height: 1.7; font-size: 14px; color: var(--text-muted); }
+        .seo-content h2 { color: var(--accent-green); font-size: 19px; margin: 20px 0 10px; border-bottom: 1px solid var(--border-color); padding-bottom: 5px; font-weight: 900; }
 
-        /* SEO & Footer */
-        .lang-block { display: none; }
-        .lang-block.active { display: block; }
-        .seo-text { padding: 30px 5px; color: var(--text-muted); }
-        .seo-text h2 { color: var(--accent-green); font-size: 24px; margin-bottom: 15px; }
+        .tools-network { padding: 20px 15px; text-align: center; border-top: 1px solid var(--border-color); margin-top: 20px; }
+        .tools-network h2 { margin: 0 0 15px 0; color: #64748b; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
+        .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .tool-link-btn { padding: 12px 5px; border: 1px solid var(--accent-green); color: var(--accent-green); text-decoration: none; border-radius: 8px; font-size: 12px; font-weight: 900; display: flex; align-items: center; justify-content: center; height: 48px; box-sizing: border-box; }
+        
+        .tool-link-btn:last-child:nth-child(odd) { grid-column: 1 / span 2; justify-self: center; width: calc(50% - 5px); }
 
-        footer { border-top: 1px solid var(--border-color); padding: 40px 15px; text-align: center; }
-        .footer-info { background: rgba(255,255,255,0.03); padding: 20px; border-radius: 12px; text-align: left; margin-bottom: 30px; font-size: 14px; border: 1px solid var(--border-color); }
-        .footer-btns { display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; }
-        .f-btn { background: none; border: none; color: var(--accent-green); text-decoration: underline; font-weight: 700; cursor: pointer; padding: 10px; font-size: 14px; }
-
-        /* Modal FIXED */
-        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(4px); }
-        .modal-content { background: var(--card-bg); margin: 10% auto; width: 92%; max-width: 550px; border-radius: 20px; border: 1px solid var(--border-color); position: relative; overflow: hidden; animation: slideUp 0.3s; }
-        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        .modal-header { padding: 15px; display: flex; justify-content: flex-end; background: rgba(0,0,0,0.2); }
-        .close-btn { background: var(--accent-green); color: white; border: none; width: 48px; height: 48px; border-radius: 12px; font-size: 32px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-        .modal-body { padding: 30px; color: white; max-height: 70vh; overflow-y: auto; }
+        footer { border-top: 1px solid var(--border-color); padding: 30px 15px; text-align: center; font-size: 13px; color: #94a3b8; }
+        .footer-info-block { border: 2px solid var(--border-glow); border-radius: 12px; padding: 18px; margin: 0 auto 20px auto; background: rgba(255, 255, 255, 0.05); text-align: left; max-width: 500px; line-height: 1.6; }
+        .footer-btn { background: none; border: none; color: var(--accent-green); text-decoration: underline; cursor: pointer; padding: 0 8px; font-weight: 900; font-family: inherit; font-size: 13px; }
+        
+        .modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); overflow-y: auto; }
+        .modal-content { background: var(--card-bg); margin: 10% auto; padding: 35px 25px 25px; width: 90%; max-width: 600px; border-radius: 12px; position: relative; border: 2px solid var(--border-glow); color: white; line-height: 1.6; }
+        .close-btn { position: absolute; right: 5px; top: 5px; font-size: 40px; cursor: pointer; padding: 10px 20px; background: none; border: none; color: var(--text-muted); font-weight: 300; }
     </style>
 </head>
 <body>
 
-<a href="#main-content" class="skip-link">Skip to content</a>
-
-<header>
+<header class="top-header">
     <h1>SmartFinance.io</h1>
-    <select class="lang-switcher" onchange="changeLanguage(this.value)" id="langSelect" aria-label="Select website language">
-        <option value="en">EN</option>
-        <option value="uk">UK</option>
-        <option value="es">ES</option>
-        <option value="de">DE</option>
-    </select>
+    <div>
+        <label for="langSelect" class="sr-only">Language</label>
+        <select class="lang-switcher" onchange="changeLang(this.value)" id="langSelect">
+            <option value="en">English</option>
+            <option value="uk">Українська</option>
+            <option value="es">Español</option>
+            <option value="de">Deutsch</option>
+        </select>
+    </div>
 </header>
 
-<main class="container" id="main-content">
-    <div class="tabs-grid" role="tablist" id="tabsBox"></div>
-
-    <div class="card">
-        <div class="row">
-            <label for="amount" id="label-amount">Amount</label>
-            <input type="number" id="amount" class="input-field" value="10000" oninput="runCalc()">
-        </div>
-        <div class="row">
-            <label for="interest" id="label-interest">Interest %</label>
-            <input type="number" id="interest" class="input-field" value="5" step="0.1" oninput="runCalc()">
-        </div>
-        <div class="row">
-            <label for="term" id="label-term">Term (Years)</label>
-            <input type="number" id="term" class="input-field" value="5" oninput="runCalc()">
-        </div>
-        <div style="height: 1px; background: var(--border-color); margin: 25px 0;"></div>
-        <div class="row">
-            <label id="label-monthly">Monthly Payment</label>
-            <input type="text" id="res-monthly" class="input-field res-field" readonly aria-live="polite">
-        </div>
-        <div class="row">
-            <label id="label-total">Total Repayment</label>
-            <input type="text" id="res-total" class="input-field res-field" readonly aria-live="polite">
+<main class="container">
+    <nav id="tabs" class="tabs-grid" aria-label="Calculator type"></nav>
+    <div class="ad-space" role="complementary">ADVERTISEMENT AREA</div>
+    
+    <div class="converter-box">
+        <div class="row"><label id="lbl-amount" for="amount">Amount:</label><input type="number" id="amount" class="input-field" value="10000" oninput="calculate()"></div>
+        <div class="row"><label id="lbl-interest" for="interest">Interest %:</label><input type="number" id="interest" class="input-field" value="5" step="0.1" oninput="calculate()"></div>
+        <div class="row"><label id="lbl-term" for="term">Term (Y):</label><input type="number" id="term" class="input-field" value="5" oninput="calculate()"></div>
+        
+        <div style="margin-top:25px; border-top: 1px solid var(--border-color); padding-top: 20px;">
+            <div class="row"><label id="lbl-monthly" for="monthlyResult">Monthly Pay:</label><input type="text" id="monthlyResult" class="input-field res-field" readonly aria-live="polite"></div>
+            <div class="row"><label id="lbl-total" for="totalResult">Total Repay:</label><input type="text" id="totalResult" class="input-field res-field" readonly aria-live="polite"></div>
         </div>
     </div>
 
-    <div id="seo-content" class="seo-text"></div>
+    <section class="seo-content" id="seo-box"></section>
 
-    <section class="tools-section">
-        <h2 id="label-other">Other Financial Tools</h2>
+    <section class="tools-network">
+        <h2 id="txt-other-tools">Other Elite Tools</h2>
         <div class="tools-grid">
-            <a href="#" class="tool-btn" aria-label="Unit Converter Tool">Unit</a>
-            <a href="#" class="tool-btn" aria-label="Currency Converter Tool">Currency</a>
-            <a href="#" class="tool-btn" aria-label="VAT Calculator Tool">VAT</a>
-            <a href="#" class="tool-btn" aria-label="BMI Calculator Tool">BMI</a>
+            <a href="https://smart-converter.github.io/unit-converter/" class="tool-link-btn" id="lnk-unit">Unit Converter</a>
+            <a href="https://smart-converter.github.io/currency-converter/" class="tool-link-btn" id="lnk-cur">Currency Converter</a>
+            <a href="https://smart-converter.github.io/percentage-calculator/" class="tool-link-btn" id="lnk-perc">Percentage Calc</a>
+            <a href="https://smart-converter.github.io/discount-calculator/" class="tool-link-btn" id="lnk-disc">Discount Calc</a>
+            <a href="https://smart-converter.github.io/vat-calculator/" class="tool-link-btn" id="lnk-vat">VAT Calculator</a>
+            <a href="https://smart-converter.github.io/tip-calculator/" class="tool-link-btn" id="lnk-tip">Tip Calculator</a>
+            <a href="https://smart-converter.github.io/bmi-calculator/" class="tool-link-btn" id="lnk-bmi">BMI Calculator</a>
         </div>
     </section>
 </main>
 
 <footer>
-    <div id="footer-text" class="footer-info"></div>
-    <div class="footer-btns">
-        <button class="f-btn" onclick="showModal('priv')" id="btn-priv">Privacy Policy</button>
-        <button class="f-btn" onclick="showModal('terms')" id="btn-terms">Terms of Use</button>
-    </div>
-    <p style="font-size: 12px; opacity: 0.6;">© 2026 SmartFinance.io - Professional Grade Tools</p>
+    <div class="footer-info-block" id="footer-full-text"></div>
+    <p>© 2026 SmartFinance.io - Precise Calculation Tools</p>
+    <nav aria-label="Legal navigation">
+        <button class="footer-btn" onclick="openPol('privacy')" id="link-privacy">Privacy Policy</button>
+        <button class="footer-btn" onclick="openPol('terms')" id="link-terms">Terms of Use</button>
+    </nav>
 </footer>
 
-<div id="modalBox" class="modal" onclick="if(event.target==this)closeModal()" aria-hidden="true" role="dialog">
+<div id="siteModal" class="modal" onclick="if(event.target == this) closeModal()" aria-hidden="true" role="dialog">
     <div class="modal-content">
-        <div class="modal-header">
-            <button class="close-btn" onclick="closeModal()" aria-label="Close modal Window">×</button>
-        </div>
-        <div id="modalContent" class="modal-body"></div>
+        <button class="close-btn" onclick="closeModal()" aria-label="Close modal">×</button>
+        <div id="modalBody"></div>
     </div>
 </div>
 
 <script>
     const translations = {
         en: {
-            amt: "Loan Amount", int: "Interest Rate %", term: "Term (Years)", mon: "Monthly Payment", tot: "Total Repayment",
-            cats: ["Loan", "Mortgage"], other: "Other Financial Tools", priv: "Privacy Policy", terms: "Terms of Use",
-            footer: "SmartFinance.io provides high-precision financial algorithms based on international annuity standards. We ensure your data remains private and local.",
-            seo: "<h2>Financial Planning Made Simple</h2><p>Our tool helps you calculate the real cost of borrowing. Compare mortgage rates and loan terms to save money on interest.</p>",
-            pT: "<h2>Privacy</h2><p>We do not collect any personal data. All calculations are performed in your browser.</p>",
-            tT: "<h2>Terms</h2><p>This tool is for informational purposes. Always consult with a financial advisor.</p>"
+            cats: ["Loan", "Mortgage"], amount: "Amount:", interest: "Interest %:", term: "Term (Y):", monthly: "Monthly Pay:", total: "Total Repay:",
+            other: "Other Elite Tools", privacy: "Privacy Policy", terms: "Terms of Use",
+            unit: "Unit Converter", cur: "Currency", perc: "Percentage", disc: "Discount", vat: "VAT", tip: "Tip", bmi: "BMI",
+            footer: "SmartFinance.io is your premier destination for high-precision financial planning. Whether you are applying for a personal loan or planning a 30-year mortgage, our tools provide the mathematical accuracy you need to make informed decisions. We use standard bank formulas to ensure your monthly payments and total interests are calculated correctly.",
+            seo: `<h2>Professional Loan Planning</h2><p>Understand your debt before you sign. Our tool helps you break down complex interest rates into simple monthly payments. Use the Mortgage mode for long-term real estate planning or Loan mode for personal finance.</p><h2>Calculate Total Cost</h2><p>By entering your interest rate and term, you can see exactly how much you will pay back in total, helping you save money on interest over time.</p>`,
+            privText: "<h2>Privacy Policy</h2><p>Your data never leaves your device. All financial calculations are performed locally in your browser for maximum security.</p>", 
+            termsText: "<h2>Terms of Use</h2><p>These calculators are for informational purposes. Always consult with a bank or financial advisor for official loan agreements.</p>"
         },
         uk: {
-            amt: "Сума кредиту", int: "Відсоткова ставка %", term: "Термін (років)", mon: "Місячний платіж", tot: "Загальна сума",
-            cats: ["Кредит", "Іпотека"], other: "Інші інструменти", priv: "Конфіденційність", terms: "Умови використання",
-            footer: "SmartFinance.io надає високоточні фінансові алгоритми, засновані на міжнародних стандартах ануїтету. Ми гарантуємо конфіденційність ваших даних.",
-            seo: "<h2>Фінансове планування — це просто</h2><p>Наш інструмент допомагає розрахувати реальну вартість кредитування. Порівнюйте ставки та умови, щоб заощадити на відсотках.</p>",
-            pT: "<h2>Конфіденційність</h2><p>Ми не збираємо жодних персональних даних. Розрахунки відбуваються у вашому браузері.</p>",
-            tT: "<h2>Умови</h2><p>Цей інструмент має інформаційний характер. Завжди консультуйтеся з фахівцем.</p>"
+            cats: ["Кредит", "Іпотека"], amount: "Сума:", interest: "Ставка %:", term: "Термін (р.):", monthly: "Міс. платіж:", total: "До сплати:",
+            other: "Інші професійні інструменти", privacy: "Конфіденційність", terms: "Умови",
+            unit: "Конвертер", cur: "Валюти", perc: "Відсотки", disc: "Знижки", vat: "ПДВ", tip: "Чайові", bmi: "BMI",
+            footer: "SmartFinance.io — це ваш надійний помічник для точного фінансового планування. Незалежно від того, чи берете ви споживчий кредит, чи плануєте іпотеку на 30 років, наш інструмент забезпечує математичну точність. Ми використовуємо банківські формули для розрахунку щомісячних платежів та переплат.",
+            seo: `<h2>Професійне кредитне планування</h2><p>Дізнайтеся реальну вартість кредиту до підписання договору. Наш інструмент допоможе розрахувати складні відсоткові ставки та перетворити їх на зрозумілі щомісячні платежі.</p><h2>Економте на відсотках</h2><p>Порівнюйте різні терміни та ставки, щоб знайти найвигідніший варіант і зменшити загальну суму переплати банку.</p>`,
+            privText: "<h2>Політика конфіденційності</h2><p>Ваші дані залишаються на вашому пристрої. Усі розрахунки відбуваються локально у вашому браузері.</p>", 
+            termsText: "<h2>Умови використання</h2><p>Калькулятори надаються лише для ознайомлення. Для офіційних розрахунків зверніться до вашої фінансової установи.</p>"
+        },
+        es: {
+            cats: ["Préstamo", "Hipoteca"], amount: "Monto:", interest: "Interés %:", term: "Años:", monthly: "Pago Mensual:", total: "Total:",
+            other: "Otras herramientas de élite", privacy: "Privacidad", terms: "Términos",
+            unit: "Unidades", cur: "Moneda", perc: "Porcentaje", disc: "Descuento", vat: "IVA", tip: "Propina", bmi: "BMI",
+            footer: "SmartFinance.io es su destino principal para la planificación financiera de alta precisión. Ya sea que solicite un préstamo personal o una hipoteca a largo plazo, nuestras herramientas brindan la precisión necesaria para tomar decisiones informadas.",
+            seo: `<h2>Planificación Financiera Profesional</h2><p>Entienda su deuda antes de firmar. Nuestra herramienta ayuda a desglosar tasas de interés complejas en pagos mensuales simples. Use el modo Hipoteca para bienes raíces o Préstamo para finanzas personales.</p><h2>Calcule el costo total</h2><p>Vea exactamente cuánto pagará en total, ayudándole a ahorrar dinero en intereses a largo plazo.</p>`,
+            privText: "<h2>Privacidad</h2><p>Sus datos financieros nunca salen de su dispositivo. Los cálculos se realizan localmente en su navegador.</p>", 
+            termsText: "<h2>Términos</h2><p>Estas calculadoras son informativas. Consulte con un asesor financiero para acuerdos oficiales.</p>"
+        },
+        de: {
+            cats: ["Kredit", "Hypothek"], amount: "Betrag:", interest: "Zins %:", term: "Jahre:", monthly: "Monatsrate:", total: "Gesamt:",
+            other: "Andere Elite-Tools", privacy: "Datenschutz", terms: "AGB",
+            unit: "Einheiten", cur: "Währung", perc: "Prozent", disc: "Rabatt", vat: "MwSt", tip: "Trinkgeld", bmi: "BMI",
+            footer: "SmartFinance.io ist Ihre erste Adresse für hochpräzise Finanzplanung. Ob Privatkredit oder 30-jährige Hypothek, unsere Tools bieten die mathematische Genauigkeit, die Sie für fundierte Entscheidungen benötigen.",
+            seo: `<h2>Professionelle Kreditplanung</h2><p>Verstehen Sie Ihre Schulden, bevor Sie unterschreiben. Unser Tool hilft dabei, komplexe Zinssätze in einfache monatliche Raten zu zerlegen.</p><h2>Gesamtkosten berechnen</h2><p>Sehen Sie genau, wie viel Sie insgesamt zurückzahlen werden, und sparen Sie Zinsen durch optimales Planen.</p>`,
+            privText: "<h2>Datenschutz</h2><p>Ihre Daten bleiben auf Ihrem Gerät. Alle Berechnungen werden sicher in Ihrem Browser durchgeführt.</p>", 
+            termsText: "<h2>AGB</h2><p>Diese Rechner dienen nur zur Information. Konsultieren Sie einen Experten für offizielle Kreditverträge.</p>"
         }
-        // ... (ES and DE follow the same structure)
     };
 
-    let currentLang = localStorage.getItem('lang_f') || 'en';
+    let curLang = localStorage.getItem('langFinance') || 'en';
     let currentTab = 0;
 
-    function changeLanguage(lang) {
-        currentLang = lang;
-        localStorage.setItem('lang_f', lang);
-        document.documentElement.lang = lang;
+    function changeLang(lang) {
+        curLang = lang;
+        localStorage.setItem('langFinance', lang);
         updateUI();
     }
 
     function updateUI() {
-        const t = translations[currentLang] || translations.en;
-        document.getElementById('label-amount').innerText = t.amt;
-        document.getElementById('label-interest').innerText = t.int;
-        document.getElementById('label-term').innerText = t.term;
-        document.getElementById('label-monthly').innerText = t.mon;
-        document.getElementById('label-total').innerText = t.tot;
-        document.getElementById('label-other').innerText = t.other;
-        document.getElementById('btn-priv').innerText = t.priv;
-        document.getElementById('btn-terms').innerText = t.terms;
-        document.getElementById('footer-text').innerText = t.footer;
-        document.getElementById('seo-content').innerHTML = t.seo;
-
-        const tabsBox = document.getElementById('tabsBox');
-        tabsBox.innerHTML = '';
-        t.cats.forEach((name, i) => {
-            const btn = document.createElement('button');
-            btn.className = `tab ${i === currentTab ? 'active' : ''}`;
-            btn.innerText = name;
-            btn.onclick = () => { currentTab = i; updateUI(); };
-            tabsBox.appendChild(btn);
-        });
-        runCalc();
+        const l = translations[curLang] || translations.en;
+        document.documentElement.lang = curLang;
+        document.getElementById('langSelect').value = curLang;
+        document.getElementById('lbl-amount').innerText = l.amount;
+        document.getElementById('lbl-interest').innerText = l.interest;
+        document.getElementById('lbl-term').innerText = l.term;
+        document.getElementById('lbl-monthly').innerText = l.monthly;
+        document.getElementById('lbl-total').innerText = l.total;
+        document.getElementById('txt-other-tools').innerText = l.other;
+        document.getElementById('footer-full-text').innerText = l.footer;
+        document.getElementById('link-privacy').innerText = l.privacy;
+        document.getElementById('link-terms').innerText = l.terms;
+        document.getElementById('seo-box').innerHTML = l.seo;
+        
+        document.getElementById('lnk-unit').innerText = l.unit;
+        document.getElementById('lnk-cur').innerText = l.cur;
+        document.getElementById('lnk-perc').innerText = l.perc;
+        document.getElementById('lnk-disc').innerText = l.disc;
+        document.getElementById('lnk-vat').innerText = l.vat;
+        document.getElementById('lnk-tip').innerText = l.tip;
+        document.getElementById('lnk-bmi').innerText = l.bmi;
+        
+        initTabs();
     }
 
-    function runCalc() {
+    function initTabs() {
+        const t = document.getElementById('tabs');
+        t.innerHTML = '';
+        const l = translations[curLang] || translations.en;
+        l.cats.forEach((cat, i) => {
+            const btn = document.createElement('button');
+            btn.className = `tab ${i === currentTab ? 'active' : ''}`;
+            btn.innerText = cat;
+            btn.onclick = () => { currentTab = i; initTabs(); calculate(); };
+            t.appendChild(btn);
+        });
+        calculate();
+    }
+
+    function calculate() {
         const p = parseFloat(document.getElementById('amount').value) || 0;
         const r = (parseFloat(document.getElementById('interest').value) || 0) / 100 / 12;
         const n = (parseFloat(document.getElementById('term').value) || 0) * 12;
         
+        const mOut = document.getElementById('monthlyResult');
+        const tOut = document.getElementById('totalResult');
+
         if (p > 0 && r > 0 && n > 0) {
             const x = Math.pow(1 + r, n);
-            const m = (p * x * r) / (x - 1);
-            document.getElementById('res-monthly').value = m.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            document.getElementById('res-total').value = (m * n).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            const monthly = (p * x * r) / (x - 1);
+            mOut.value = monthly.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            tOut.value = (monthly * n).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        } else if (p > 0 && r === 0 && n > 0) {
+            mOut.value = (p / n).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            tOut.value = p.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
         } else {
-            document.getElementById('res-monthly').value = "0.00";
-            document.getElementById('res-total').value = "0.00";
+            mOut.value = "0.00";
+            tOut.value = "0.00";
         }
     }
 
-    function showModal(type) {
-        const t = translations[currentLang] || translations.en;
-        document.getElementById('modalContent').innerHTML = (type === 'priv') ? t.pT : t.tT;
-        const m = document.getElementById('modalBox');
-        m.style.display = 'block';
-        m.setAttribute('aria-hidden', 'false');
+    function openPol(type) {
+        const l = translations[curLang] || translations.en;
+        document.getElementById('modalBody').innerHTML = type === 'privacy' ? l.privText : l.termsText;
+        const modal = document.getElementById('siteModal');
+        modal.style.display = 'block';
+        modal.setAttribute('aria-hidden', 'false');
     }
 
-    function closeModal() {
-        const m = document.getElementById('modalBox');
-        m.style.display = 'none';
-        m.setAttribute('aria-hidden', 'true');
+    function closeModal() { 
+        const modal = document.getElementById('siteModal');
+        modal.style.display = 'none'; 
+        modal.setAttribute('aria-hidden', 'true');
     }
-
+    
     updateUI();
 </script>
 </body>
