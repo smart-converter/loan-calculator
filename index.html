@@ -5,13 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Finance - Professional Loan & Mortgage Calculator</title>
     <meta id="meta-desc" name="description" content="Calculate your monthly loan or mortgage payments with our free, high-precision financial tool. Accurate interest rate and repayment analysis.">
+    
+    <meta name="google-site-verification" content="ВАШ_КОД_ТУТ" />
+
     <style>
         :root {
             --bg-dark: #0f172a;
             --card-bg: #1e293b;
-            --accent-green: #4ade80; /* Високий контраст для Accessibility */
+            --accent-green: #4ade80;
             --text-light: #f8fafc;
-            --text-muted: #cbd5e1; /* Покращено з #94a3b8 для чіткості */
+            --text-muted: #cbd5e1;
             --border-color: #334155;
             --border-glow: rgba(255, 255, 255, 0.2);
         }
@@ -26,7 +29,8 @@
         .lang-switcher { background: var(--bg-dark); border: 2px solid white; color: white; padding: 4px 8px; border-radius: 8px; font-size: 15px; cursor: pointer; font-weight: 800; outline: none; min-height: 44px; }
         .lang-switcher option { color: #000; background: #fff; }
         
-        .container { max-width: 800px; margin: 0 auto; padding: 5px; box-sizing: border-box; }
+        /* Додано відступ знизу для стабільності рендерингу */
+        .container { max-width: 800px; margin: 0 auto; padding: 5px 5px 60px 5px; box-sizing: border-box; min-height: 100vh; }
         
         .tabs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background-color: #14532d; border: 1px solid #14532d; margin: 15px 0 10px; border-radius: 8px; overflow: hidden; }
         .tab { background: #166534; color: #fff; height: 48px; text-align: center; cursor: pointer; font-size: 11px; font-weight: 900; text-transform: uppercase; border: none; display: flex; align-items: center; justify-content: center; font-family: inherit; width: 100%; }
@@ -40,18 +44,27 @@
         .input-field { flex: 1; padding: 10px 12px; border: 1px solid var(--border-color); border-radius: 8px; font-size: 19px; font-weight: 800; background: #fff; color: #000; outline: none; width: 100%; box-sizing: border-box; height: 48px; }
         .res-field { background: #f0fdf4 !important; color: #166534 !important; border-color: var(--accent-green) !important; font-weight: 900; }
         
-        .seo-content { padding: 15px; line-height: 1.7; font-size: 14px; color: var(--text-muted); }
+        .seo-content { padding: 15px; line-height: 1.7; font-size: 14px; color: var(--text-muted); min-height: 200px; }
         .seo-content h2 { color: var(--accent-green); font-size: 19px; margin: 20px 0 10px; border-bottom: 1px solid var(--border-color); padding-bottom: 5px; font-weight: 900; }
 
         .tools-network { padding: 20px 15px; text-align: center; border-top: 1px solid var(--border-color); margin-top: 20px; }
         .tools-network h2 { margin: 0 0 15px 0; color: #94a3b8; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
         .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .tool-link-btn { padding: 12px 5px; border: 2px solid var(--accent-green); color: var(--accent-green); text-decoration: none; border-radius: 8px; font-size: 12px; font-weight: 900; display: flex; align-items: center; justify-content: center; height: 48px; box-sizing: border-box; transition: background 0.2s; }
-        .tool-link-btn:hover { background: rgba(74, 222, 128, 0.1); }
+        .tool-link-btn { padding: 12px 5px; border: 2px solid var(--accent-green); color: var(--accent-green); text-decoration: none; border-radius: 8px; font-size: 12px; font-weight: 900; display: flex; align-items: center; justify-content: center; height: 48px; box-sizing: border-box; }
         
-        .tool-link-btn:last-child:nth-child(odd) { grid-column: 1 / span 2; justify-self: center; width: calc(50% - 5px); }
-
-        footer { border-top: 1px solid var(--border-color); padding: 30px 15px; text-align: center; font-size: 13px; color: var(--text-muted); box-sizing: border-box; width: 100%; }
+        /* ПРАВКИ ФУТЕРА ДЛЯ GOOGLE SEARCH CONSOLE */
+        footer { 
+            border-top: 1px solid var(--border-color); 
+            padding: 40px 15px; 
+            text-align: center; 
+            font-size: 13px; 
+            color: var(--text-muted); 
+            box-sizing: border-box; 
+            width: 100%; 
+            display: block; 
+            min-height: 180px; 
+            clear: both; 
+        }
         .footer-info-block { 
             border: 2px solid var(--border-glow); 
             border-radius: 12px; 
@@ -59,13 +72,18 @@
             margin: 0 auto 20px auto; 
             background: rgba(255, 255, 255, 0.05); 
             text-align: left; 
-            max-width: calc(100% - 20px); 
-            width: 480px; 
+            max-width: 100%; 
+            width: 500px; 
             box-sizing: border-box; 
             line-height: 1.6; 
-            color: var(--text-muted);
         }
-        .footer-btn { background: none; border: none; color: var(--accent-green); text-decoration: underline; cursor: pointer; padding: 10px; font-weight: 900; font-family: inherit; font-size: 13px; min-height: 44px; }
+        .footer-btn { 
+            background: none; border: none; color: var(--accent-green); 
+            text-decoration: underline; cursor: pointer; 
+            padding: 12px 20px; /* Збільшено зону кліку */
+            font-weight: 900; font-family: inherit; 
+            font-size: 14px; min-height: 48px; display: inline-block;
+        }
         
         .modal { display: none; position: fixed; z-index: 10000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); overflow-y: auto; }
         .modal-content { background: var(--card-bg); margin: 10% auto; padding: 35px 25px 25px; width: 85%; max-width: 600px; border-radius: 12px; position: relative; border: 2px solid var(--border-glow); color: white; line-height: 1.6; }
@@ -107,13 +125,13 @@
     <section class="tools-network">
         <h2 id="txt-other-tools">Other Elite Tools</h2>
         <div class="tools-grid">
-            <a href="https://smart-converter.github.io/unit-converter/" class="tool-link-btn" id="lnk-unit">Unit Converter</a>
-            <a href="https://smart-converter.github.io/currency-converter/" class="tool-link-btn" id="lnk-cur">Currency</a>
-            <a href="https://smart-converter.github.io/percentage-calculator/" class="tool-link-btn" id="lnk-perc">Percentage</a>
-            <a href="https://smart-converter.github.io/discount-calculator/" class="tool-link-btn" id="lnk-disc">Discount</a>
-            <a href="https://smart-converter.github.io/vat-calculator/" class="tool-link-btn" id="lnk-vat">VAT</a>
-            <a href="https://smart-converter.github.io/tip-calculator/" class="tool-link-btn" id="lnk-tip">Tip</a>
-            <a href="https://smart-converter.github.io/bmi-calculator/" class="tool-link-btn" id="lnk-bmi">BMI</a>
+            <a href="https://smart-converter.github.io/unit-converter/" class="tool-link-btn">Unit Converter</a>
+            <a href="https://smart-converter.github.io/currency-converter/" class="tool-link-btn">Currency</a>
+            <a href="https://smart-converter.github.io/percentage-calculator/" class="tool-link-btn">Percentage</a>
+            <a href="https://smart-converter.github.io/discount-calculator/" class="tool-link-btn">Discount</a>
+            <a href="https://smart-converter.github.io/vat-calculator/" class="tool-link-btn">VAT</a>
+            <a href="https://smart-converter.github.io/tip-calculator/" class="tool-link-btn">Tip</a>
+            <a href="https://smart-converter.github.io/bmi-calculator/" class="tool-link-btn">BMI</a>
         </div>
     </section>
 </main>
@@ -140,7 +158,6 @@
             desc: "Smart Finance - Professional loan and mortgage calculator with high-precision algorithms.",
             cats: ["Loan", "Mortgage"], amount: "Amount:", interest: "Interest %:", term: "Term (Y):", monthly: "Monthly Pay:", total: "Total Repay:",
             other: "Other Elite Tools", privacy: "Privacy Policy", terms: "Terms of Use",
-            unit: "Unit Converter", cur: "Currency", perc: "Percentage", disc: "Discount", vat: "VAT", tip: "Tip", bmi: "BMI",
             footer: "SmartFinance.io is your premier destination for high-precision financial planning. Whether you are applying for a personal loan or planning a 30-year mortgage, our tools provide the mathematical accuracy you need to make informed decisions. We use standard bank formulas to ensure your monthly payments and total interests are calculated correctly.",
             seo: `<h2>Professional Loan Planning</h2><p>Understand your debt before you sign. Our tool helps you break down complex interest rates into simple monthly payments. Use the Mortgage mode for long-term real estate planning or Loan mode for personal finance.</p><h2>Calculate Total Cost</h2><p>By entering your interest rate and term, you can see exactly how much you will pay back in total, helping you save money on interest over time.</p>`,
             privText: "<h2>Privacy Policy</h2><p>Your data never leaves your device. All financial calculations are performed locally in your browser for maximum security.</p>", 
@@ -150,7 +167,6 @@
             desc: "Smart Finance - Професійний калькулятор кредиту та іпотеки з високою точністю розрахунків.",
             cats: ["Кредит", "Іпотека"], amount: "Сума:", interest: "Ставка %:", term: "Термін (р.):", monthly: "Міс. платіж:", total: "До сплати:",
             other: "Інші професійні інструменти", privacy: "Конфіденційність", terms: "Умови",
-            unit: "Конвертер", cur: "Валюти", perc: "Відсотки", disc: "Знижки", vat: "ПДВ", tip: "Чайові", bmi: "BMI",
             footer: "SmartFinance.io — це ваш надійний помічник для точного фінансового планування. Незалежно від того, чи берете ви споживчий кредит, чи плануєте іпотеку на 30 років, наш інструмент забезпечує математичну точність. Ми використовуємо банківські формули для розрахунку щомісячних платежів та переплат.",
             seo: `<h2>Професійне кредитне планування</h2><p>Дізнайтеся реальну вартість кредиту до підписання договору. Наш інструмент допоможе розрахувати складні відсоткові ставки та перетворити їх на зрозумілі щомісячні платежі.</p><h2>Економте на відсотках</h2><p>Порівнюйте різні терміни та ставки, щоб знайти найвигідніший варіант і зменшити загальну суму переплати банку.</p>`,
             privText: "<h2>Політика конфіденційності</h2><p>Ваші дані залишаються на вашому пристрої. Усі розрахунки відбуваються локально у вашому браузері.</p>", 
@@ -160,7 +176,6 @@
             desc: "Smart Finance - Calculadora profesional de préstamos e hipotecas con algoritmos de alta precisión.",
             cats: ["Préstamo", "Hipoteca"], amount: "Monto:", interest: "Interés %:", term: "Años:", monthly: "Pago Mensual:", total: "Total:",
             other: "Otras herramientas de élite", privacy: "Privacidad", terms: "Términos",
-            unit: "Unidades", cur: "Moneda", perc: "Porcentaje", disc: "Descuento", vat: "IVA", tip: "Propina", bmi: "BMI",
             footer: "SmartFinance.io es su destino principal para la planificación financiera de alta precisión. Nuestras herramientas brindan la precisión necesaria para tomar decisiones informadas.",
             seo: `<h2>Planificación Financiera</h2><p>Entienda su deuda antes de firmar. Nuestra herramienta ayuda a desglosar tasas de interés complejas en pagos mensuales simples.</p><h2>Calcule el costo total</h2><p>Vea exactamente cuánto pagará en total, ayudándole a ahorrar dinero en intereses a largo plazo.</p>`,
             privText: "<h2>Privacidad</h2><p>Sus datos financieros nunca salen de su dispositivo. Los cálculos se realizan localmente en su navegador.</p>", 
@@ -170,7 +185,6 @@
             desc: "Smart Finance - Professioneller Kredit- und Hypothekenrechner mit hochpräzisen Algorithmen.",
             cats: ["Kredit", "Hypothek"], amount: "Betrag:", interest: "Zins %:", term: "Jahre:", monthly: "Monatsrate:", total: "Gesamt:",
             other: "Andere Elite-Tools", privacy: "Datenschutz", terms: "AGB",
-            unit: "Einheiten", cur: "Währung", perc: "Prozent", disc: "Rabatt", vat: "MwSt", tip: "Trinkgeld", bmi: "BMI",
             footer: "SmartFinance.io ist Ihre erste Adresse für hochpräzise Finanzplanung. Unsere Tools bieten die mathematische Genauigkeit, die Sie benötigen.",
             seo: `<h2>Professionelle Kreditplanung</h2><p>Verstehen Sie Ihre Schulden, bevor Sie unterschreiben. Unser Tool hilft dabei, komplexe Zinssätze in einfache monatliche Raten zu zerlegen.</p><h2>Gesamtkosten berechnen</h2><p>Sehen Sie genau, wie viel Sie insgesamt zurückzahlen werden.</p>`,
             privText: "<h2>Datenschutz</h2><p>Ihre Daten bleiben auf Ihrem Gerät. Alle Berechnungen werden sicher in Ihrem Browser durchgeführt.</p>", 
@@ -202,15 +216,6 @@
         document.getElementById('link-privacy').innerText = l.privacy;
         document.getElementById('link-terms').innerText = l.terms;
         document.getElementById('seo-box').innerHTML = l.seo;
-        
-        document.getElementById('lnk-unit').innerText = l.unit;
-        document.getElementById('lnk-cur').innerText = l.cur;
-        document.getElementById('lnk-perc').innerText = l.perc;
-        document.getElementById('lnk-disc').innerText = l.disc;
-        document.getElementById('lnk-vat').innerText = l.vat;
-        document.getElementById('lnk-tip').innerText = l.tip;
-        document.getElementById('lnk-bmi').innerText = l.bmi;
-        
         initTabs();
     }
 
@@ -253,15 +258,9 @@
         document.getElementById('modalBody').innerHTML = type === 'privacy' ? l.privText : l.termsText;
         const modal = document.getElementById('siteModal');
         modal.style.display = 'block';
-        modal.setAttribute('aria-hidden', 'false');
     }
 
-    function closeModal() { 
-        const modal = document.getElementById('siteModal');
-        modal.style.display = 'none'; 
-        modal.setAttribute('aria-hidden', 'true');
-    }
-    
+    function closeModal() { document.getElementById('siteModal').style.display = 'none'; }
     updateUI();
 </script>
 </body>
