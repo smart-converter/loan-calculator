@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="8boxzAKQUKKF8IEuVEX1wX8aUwcdch3Q11BgfGM3vkM" />
     <title>Smart Finance - Professional Loan & Mortgage Calculator</title>
     <meta id="meta-desc" name="description" content="Calculate your monthly loan or mortgage payments with our free, high-precision financial tool. Accurate interest rate and repayment analysis.">
     <style>
@@ -155,26 +156,6 @@
             seo: `<h2>Професійне кредитне планування</h2><p>Дізнайтеся реальну вартість кредиту до підписання договору. Наш інструмент допоможе розрахувати складні відсоткові ставки та перетворити їх на зрозумілі щомісячні платежі.</p><h2>Економте на відсотках</h2><p>Порівнюйте різні терміни та ставки, щоб знайти найвигідніший варіант і зменшити загальну суму переплати банку.</p>`,
             privText: "<h2>Політика конфіденційності</h2><p>Ваші дані залишаються на вашому пристрої. Усі розрахунки відбуваються локально у вашому браузері.</p>", 
             termsText: "<h2>Умови використання</h2><p>Калькулятори надаються лише для ознайомлення. Для офіційних розрахунків зверніться до вашої фінансової установи.</p>"
-        },
-        es: {
-            desc: "Smart Finance - Calculadora profesional de préstamos e hipotecas con algoritmos de alta precisión.",
-            cats: ["Préstamo", "Hipoteca"], amount: "Monto:", interest: "Interés %:", term: "Años:", monthly: "Pago Mensual:", total: "Total:",
-            other: "Otras herramientas de élite", privacy: "Privacidad", terms: "Términos",
-            unit: "Unidades", cur: "Moneda", perc: "Porcentaje", disc: "Descuento", vat: "IVA", tip: "Propina", bmi: "BMI",
-            footer: "SmartFinance.io es su destino principal para la planificación financiera de alta precisión. Nuestras herramientas brindan la precisión necesaria para tomar decisiones informadas.",
-            seo: `<h2>Planificación Financiera</h2><p>Entienda su deuda antes de firmar. Nuestra herramienta ayuda a desglosar tasas de interés complejas en pagos mensuales simples.</p><h2>Calcule el costo total</h2><p>Vea exactamente cuánto pagará en total, ayudándole a ahorrar dinero en intereses a largo plazo.</p>`,
-            privText: "<h2>Privacidad</h2><p>Sus datos financieros nunca salen de su dispositivo. Los cálculos se realizan localmente en su navegador.</p>", 
-            termsText: "<h2>Términos</h2><p>Estas calculadoras son informativas. Consulte con un asesor financiero para acuerdos oficiales.</p>"
-        },
-        de: {
-            desc: "Smart Finance - Professioneller Kredit- und Hypothekenrechner mit hochpräzisen Algorithmen.",
-            cats: ["Kredit", "Hypothek"], amount: "Betrag:", interest: "Zins %:", term: "Jahre:", monthly: "Monatsrate:", total: "Gesamt:",
-            other: "Andere Elite-Tools", privacy: "Datenschutz", terms: "AGB",
-            unit: "Einheiten", cur: "Währung", perc: "Prozent", disc: "Rabatt", vat: "MwSt", tip: "Trinkgeld", bmi: "BMI",
-            footer: "SmartFinance.io ist Ihre erste Adresse für hochpräzise Finanzplanung. Unsere Tools bieten die mathematische Genauigkeit, die Sie benötigen.",
-            seo: `<h2>Professionelle Kreditplanung</h2><p>Verstehen Sie Ihre Schulden, bevor Sie unterschreiben. Unser Tool hilft dabei, komplexe Zinssätze in einfache monatliche Raten zu zerlegen.</p><h2>Gesamtkosten berechnen</h2><p>Sehen Sie genau, wie viel Sie insgesamt zurückzahlen werden.</p>`,
-            privText: "<h2>Datenschutz</h2><p>Ihre Daten bleiben auf Ihrem Gerät. Alle Berechnungen werden sicher in Ihrem Browser durchgeführt.</p>", 
-            termsText: "<h2>AGB</h2><p>Diese Rechner dienen nur zur Information. Konsultieren Sie einen Experten für offizielle Kreditverträge.</p>"
         }
     };
 
@@ -210,7 +191,6 @@
         document.getElementById('lnk-vat').innerText = l.vat;
         document.getElementById('lnk-tip').innerText = l.tip;
         document.getElementById('lnk-bmi').innerText = l.bmi;
-        
         initTabs();
     }
 
@@ -233,7 +213,6 @@
         const p = parseFloat(document.getElementById('amount').value) || 0;
         const r = (parseFloat(document.getElementById('interest').value) || 0) / 100 / 12;
         const n = (parseFloat(document.getElementById('term').value) || 0) * 12;
-        
         const mOut = document.getElementById('monthlyResult');
         const tOut = document.getElementById('totalResult');
 
@@ -261,7 +240,6 @@
         modal.style.display = 'none'; 
         modal.setAttribute('aria-hidden', 'true');
     }
-    
     updateUI();
 </script>
 </body>
